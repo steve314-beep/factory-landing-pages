@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="color-scheme" content="light dark" />
 <link rel="icon" href="data:," />
-<title>NKCOILS 展示站 — 预制线圈 · 发热丝 · 雾化器产品展示</title>
+<title>NKCOILS Showcase — Prebuilt Coils, Wire &amp; Atomizers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -49,6 +49,10 @@
   nav.main button:hover{color:var(--blue)}
   nav.main button.active{color:var(--blue);border-bottom-color:var(--blue)}
   .menu-btn{display:none;border:1.5px solid var(--line);background:var(--bg);border-radius:10px;width:44px;height:44px;place-items:center;color:var(--ink)}
+  .lang-switch{display:flex;gap:4px;align-items:center;border:1.5px solid var(--line);border-radius:999px;padding:3px;background:var(--bg);flex-shrink:0}
+  .lang-switch button{border:0;background:transparent;border-radius:999px;padding:6px 13px;font-size:.8rem;font-weight:600;color:var(--muted);min-height:32px;line-height:1}
+  .lang-switch button:hover{color:var(--blue)}
+  .lang-switch button.active{background:var(--blue);color:#fff}
 
   /* ---------- Hero ---------- */
   .hero{background:var(--hero-bg);color:#fff;overflow:hidden;position:relative}
@@ -195,18 +199,23 @@
   <div class="wrap">
     <div class="topbar">
       <form class="searchbox" id="searchForm" role="search">
-        <input id="searchInput" type="search" placeholder="Search for products" aria-label="搜索产品" />
-        <button type="submit" aria-label="搜索">
+        <input id="searchInput" type="search" placeholder="Search for products" aria-label="Search for products" />
+        <button type="submit" id="searchBtn" aria-label="Search">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
         </button>
       </form>
       <p class="logo" aria-label="NkCoils">Nk<span class="ring">C</span>oils</p>
-      <p class="top-note"><b>产品展示站</b> · 预制线圈 / 发热丝 / 雾化器</p>
-      <button class="menu-btn" id="menuBtn" aria-label="打开菜单" aria-expanded="false">
+      <p class="top-note" id="topNote"><b>Product Showcase</b> · Prebuilt Coils / Wire / Atomizers</p>
+      <div class="lang-switch" role="group" aria-label="Language / Язык / 语言" id="langSwitch">
+        <button type="button" data-lang="en" class="active">EN</button>
+        <button type="button" data-lang="ru">RU</button>
+        <button type="button" data-lang="zh">中文</button>
+      </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
-    <nav class="main" id="mainNav" aria-label="产品分类"></nav>
+    <nav class="main" id="mainNav" aria-label="Product categories"></nav>
   </div>
 </header>
 
@@ -215,17 +224,17 @@
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <p class="hero-word" aria-hidden="true">INNOVA</p>
-      <p class="hero-kicker">Rebuildable · Coils · Wire</p>
-      <h1 id="heroTitle">精工预制线圈与重建雾化硬件</h1>
-      <p class="lead" id="heroLead">Ni80 / Ni90 / SS316L / KA1 高纯度发热丝手工绕制，Alien、Fused Clapton、Framed Staple 全系列预制线圈，以及 Boro RBA、RTA 与 DIY 工具 —— 全部产品在此集中展示。</p>
+      <p class="hero-kicker" id="heroKicker">Rebuildable · Coils · Wire</p>
+      <h1 id="heroTitle">Precision Prebuilt Coils &amp; Rebuildable Hardware</h1>
+      <p class="lead" id="heroLead">Hand-wrapped prebuilt coils in high-purity Ni80, Ni90, SS316L and KA1 wire — Alien, Fused Clapton and Framed Staple builds — plus Boro RBA bridges, RTAs and DIY tools, all showcased in one place.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#catalog">浏览全部产品</a>
-        <a class="btn btn-ghost" href="#categories">按分类看</a>
+        <a class="btn btn-primary" href="#catalog" id="heroCta1">Browse All Products</a>
+        <a class="btn btn-ghost" href="#categories" id="heroCta2">Shop by Category</a>
       </div>
       <div class="hero-dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
     </div>
     <div class="hero-img">
-      <img src="https://nkcoils.com/wp-content/uploads/2024/09/DIGUA-RTA.6-scaled.jpg" alt="不锈钢重建式雾化器特写" />
+      <img src="https://nkcoils.com/wp-content/uploads/2024/09/DIGUA-RTA.6-scaled.jpg" id="heroImg" alt="Close-up of a stainless steel rebuildable atomizer" />
     </div>
   </div>
 </section>
@@ -233,7 +242,7 @@
 <!-- Shop by Categories -->
 <section class="block" id="categories">
   <div class="wrap">
-    <div class="sec-head"><h2>Shop by Categories</h2><p>按分类浏览展示产品</p></div>
+    <div class="sec-head"><h2 id="catHead">Shop by Category</h2><p id="catSub">Browse the showcase by category</p></div>
     <div class="cat-grid" id="catGrid"></div>
   </div>
 </section>
@@ -242,8 +251,8 @@
 <section class="block" id="new">
   <div class="wrap">
     <div class="sec-head">
-      <h2>New Arrivals</h2><p>Brands Kits / Tanks / MODs</p>
-      <button class="viewall" data-goto-cat="all">View All</button>
+      <h2 id="newHead">New Arrivals</h2><p id="newSub">Brand kits, tanks &amp; mods</p>
+      <button class="viewall" data-goto-cat="all" data-i18n="viewAll">View All</button>
     </div>
     <div class="prod-grid" id="newGrid"></div>
   </div>
@@ -253,33 +262,33 @@
 <section class="block" id="best">
   <div class="wrap">
     <div class="sec-head">
-      <h2>Best Sellers</h2><p>Latest High Quality Rebuildable &amp; Tanks</p>
-      <button class="viewall" data-goto-cat="all">View All</button>
+      <h2 id="bestHead">Best Sellers</h2><p id="bestSub">High-quality rebuildables &amp; tanks</p>
+      <button class="viewall" data-goto-cat="all" data-i18n="viewAll">View All</button>
     </div>
     <div class="prod-grid" id="bestGrid"></div>
   </div>
 </section>
 
-<!-- 工艺与材质 -->
-<section class="block" aria-label="工艺与材质">
+<!-- Craft & Materials -->
+<section class="block" aria-label="Craft and materials" id="craftSec">
   <div class="wrap">
-    <div class="sec-head"><h2>工艺与材质</h2><p>展示产品共同的制作标准</p></div>
+    <div class="sec-head"><h2 id="craftHead">Craft &amp; Materials</h2><p id="craftSub">The build standard behind every product on show</p></div>
     <div class="features">
       <div class="feature">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.5 5.5l2.1 2.1M16.4 16.4l2.1 2.1M18.5 5.5l-2.1 2.1M7.6 16.4l-2.1 2.1"/></svg>
-        <h3>高纯度合金丝</h3><p>Ni80、Ni90、SS316L、KA1 与镍钛 Nitinol，表面洁净、发热均匀，干烧后呈现均匀色泽。</p>
+        <h3 id="f1t">High-Purity Alloy Wire</h3><p id="f1p">Ni80, Ni90, SS316L, KA1 and Nitinol nickel-titanium — clean surfaces, even heating and uniform color after dry burning.</p>
       </div>
       <div class="feature">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 17c3-6 13-6 16 0M4 12c3-6 13-6 16 0M4 7c3-6 13-6 16 0"/></svg>
-        <h3>手工绕制工艺</h3><p>Alien、Fused Clapton、Framed Staple 等复杂花式绕法，绕距均匀，兼顾口感与烟雾量。</p>
+        <h3 id="f2t">Hand-Wrapped Builds</h3><p id="f2p">Alien, Fused Clapton, Framed Staple and other complex builds with even spacing, balancing flavor and vapor production.</p>
       </div>
       <div class="feature">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
-        <h3>出厂清洗处理</h3><p>预制线圈系列经清洗工序去除油污，开盒即可安装使用，减少异味与杂味。</p>
+        <h3 id="f3t">Cleaned Before Packing</h3><p id="f3p">Prebuilt coils are cleaned to remove machining oils, so they are ready to install straight from the box with no off-flavors.</p>
       </div>
       <div class="feature">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2M7 12h4M7 16h7"/></svg>
-        <h3>完整规格标注</h3><p>每款产品标注材质、线规、内径与电阻值，方便按 RDA / RTA / RBA 设备匹配选型。</p>
+        <h3 id="f4t">Full Specifications</h3><p id="f4p">Every product lists its material, wire gauge, inner diameter and resistance, so you can match it to your RDA, RTA or RBA.</p>
       </div>
     </div>
   </div>
@@ -289,8 +298,8 @@
 <section class="block" id="accessories-sec">
   <div class="wrap">
     <div class="sec-head">
-      <h2>Best Accessories</h2><p>棉花 · 滴嘴 · DIY 工具</p>
-      <button class="viewall" data-goto-cat="accessories">View All</button>
+      <h2 id="accHead">Best Accessories</h2><p id="accSub">Cotton · Drip tips · DIY tools</p>
+      <button class="viewall" data-goto-cat="accessories" data-i18n="viewAll">View All</button>
     </div>
     <div class="prod-grid" id="accGrid"></div>
   </div>
@@ -299,11 +308,11 @@
 <!-- 全部产品 / 目录 -->
 <section class="block" id="catalog">
   <div class="wrap">
-    <div class="sec-head"><h2>全部产品展示</h2><p>点击任意产品查看规格详情</p></div>
-    <div class="catalog-tools" id="chipRow" role="group" aria-label="分类筛选"></div>
+    <div class="sec-head"><h2 id="catalogHead">All Products</h2><p id="catalogSub">Tap any product to view its specifications</p></div>
+    <div class="catalog-tools" id="chipRow" role="group" aria-label="Filter by category"></div>
     <p class="result-line" id="resultLine"></p>
     <div class="prod-grid" id="catalogGrid"></div>
-    <p class="empty" id="emptyLine">没有找到匹配的产品，换个关键词试试。</p>
+    <p class="empty" id="emptyLine">No matching products found. Try a different keyword.</p>
   </div>
 </section>
 
@@ -312,23 +321,23 @@
     <div class="foot">
       <div>
         <p class="logo">Nk<span class="ring">C</span>oils</p>
-        <p>预制线圈、发热丝、金属丝、Boro 仓与 RBA、雾化器及 DIY 配件的产品展示站。页面价格为原站公开标价，仅供选型参考。</p>
+        <p id="footAbout">A showcase of prebuilt coils, heating wire, metal wire, Boro tanks and RBA bridges, atomizers and DIY accessories. Prices shown are the original site's listed prices, for reference only.</p>
       </div>
       <div>
-        <h4>Categories</h4>
+        <h4 id="footCatHead">Categories</h4>
         <ul id="footCats"></ul>
       </div>
       <div>
-        <h4>Showcase</h4>
+        <h4 id="footShowHead">Showcase</h4>
         <ul>
-          <li><button data-goto-cat="all">全部产品</button></li>
-          <li><button data-scroll="#new">New Arrivals</button></li>
-          <li><button data-scroll="#best">Best Sellers</button></li>
-          <li><button data-scroll="#accessories-sec">Best Accessories</button></li>
+          <li><button data-goto-cat="all" id="footAll">All Products</button></li>
+          <li><button data-scroll="#new" data-i18n="newHead">New Arrivals</button></li>
+          <li><button data-scroll="#best" data-i18n="bestHead">Best Sellers</button></li>
+          <li><button data-scroll="#accessories-sec" data-i18n="accHead">Best Accessories</button></li>
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
+        <h4 id="footContactHead">Contact</h4>
         <ul class="contact-list">
           <li><span class="cl-label">WhatsApp</span><a href="https://wa.me/8618811932632" target="_blank" rel="noopener">+86 18811932632</a></li>
           <li><span class="cl-label">Email</span><a href="mailto:xb1069306425@qq.com">xb1069306425@qq.com</a></li>
@@ -337,8 +346,8 @@
       </div>
     </div>
     <div class="copyright">
-      <span>© NkCoils 产品展示站</span>
-      <span>本页面为产品展示用途</span>
+      <span id="copyLeft">© NkCoils Product Showcase</span>
+      <span id="copyRight">This page is for product display purposes</span>
     </div>
   </div>
 </footer>
@@ -347,23 +356,23 @@
 <div class="modal-back" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="modalName">
   <div class="modal">
     <div class="modal-grid">
-      <div class="mph"><img id="modalImg" src="https://nkcoils.com/wp-content/uploads/2024/09/DIGUA-RTA.6-scaled.jpg" alt="产品图" /></div>
+      <div class="mph"><img id="modalImg" src="https://nkcoils.com/wp-content/uploads/2024/09/DIGUA-RTA.6-scaled.jpg" alt="Product image" /></div>
       <div class="modal-body">
-        <button class="modal-close" id="modalClose" aria-label="关闭">✕</button>
+        <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
         <p class="cat" id="modalCat"></p>
         <h3 id="modalName"></h3>
         <p class="price" id="modalPrice"></p>
         <dl class="spec" id="modalSpec"></dl>
         <p class="desc" id="modalDesc"></p>
         <div class="modal-contact">
-          <h4>Contact / 联系方式</h4>
+          <h4 id="modalContactHead">Contact</h4>
           <ul class="contact-list">
             <li><span class="cl-label">WhatsApp</span><a href="https://wa.me/8618811932632" target="_blank" rel="noopener">+86 18811932632</a></li>
             <li><span class="cl-label">Email</span><a href="mailto:xb1069306425@qq.com">xb1069306425@qq.com</a></li>
             <li><span class="cl-label">Telegram</span><span class="val">+86 18811932632</span></li>
           </ul>
         </div>
-        <p class="show-note">展示说明：本页为产品展示站，该产品仅展示外观与规格信息，咨询请通过上方联系方式联系。</p>
+        <p class="show-note" id="showNote">Showcase note: this is a product display page. Only the product's appearance and specifications are shown — for enquiries, please use the contact details above.</p>
       </div>
     </div>
   </div>
@@ -371,16 +380,17 @@
 
 <script>
 var CATEGORIES = [
-  {id:"all",        label:"HOME",            cn:"全部产品"},
-  {id:"prebuilt",   label:"PREBUILT COILS",  cn:"预制线圈", img:"https://nkcoils.com/wp-content/uploads/2024/09/IMG_0946-7-scaled.jpg", note:"Alien · Fused Clapton · 手工花式线圈"},
-  {id:"wire",       label:"WIRE",            cn:"发热丝",   img:"https://nkcoils.com/wp-content/uploads/2024/09/900x1200-%E7%99%BD%E5%BA%95.0-scaled.jpg",     note:"Clapton / Ribbon / Round 成品丝"},
-  {id:"mods",       label:"MODS",            cn:"主机",     img:"https://nkcoils.com/wp-content/uploads/2024/09/MECHLYFE-Paramour-SBS-80W-21700-TC-MOD_0074557800e7.jpg",     note:"SBS / DNA 芯片主机"},
-  {id:"boro",       label:"BORO TANKS & RBA",cn:"Boro 仓与 RBA", img:"https://nkcoils.com/wp-content/uploads/2024/09/Astro-6.jpg", note:"Billet Box 兼容 RBA 桥与仓门"},
-  {id:"atomizers",  label:"ATOMIZERS",       cn:"雾化器",   img:"https://nkcoils.com/wp-content/uploads/2024/09/DIGUA-RTA.6-scaled.jpg", note:"RTA / RDA 重建式雾化器"},
-  {id:"metal",      label:"METAL WIRE",      cn:"金属丝",   img:"https://nkcoils.com/wp-content/uploads/2026/11/Nitinol-spool-wire.jpg",    note:"Nitinol 镍钛等特种金属丝"},
-  {id:"accessories",label:"ACCESSORIES",     cn:"配件",     img:"https://nkcoils.com/wp-content/uploads/2024/09/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240920110349-scaled.jpg", note:"棉花 · 滴嘴 · DIY 工具"}
+  {id:"all",        label:{en:"HOME",ru:"ГЛАВНАЯ",zh:"首页"},            name:{en:"All Products",ru:"Все товары",zh:"全部产品"}},
+  {id:"prebuilt",   label:{en:"PREBUILT COILS",ru:"ГОТОВЫЕ СПИРАЛИ",zh:"预制线圈"},  name:{en:"Prebuilt Coils",ru:"Готовые спирали",zh:"预制线圈"}, img:"https://nkcoils.com/wp-content/uploads/2024/09/IMG_0946-7-scaled.jpg", note:{en:"Alien · Fused Clapton · hand-wrapped fancy coils",ru:"Alien · Fused Clapton · сложные спирали ручной намотки",zh:"Alien · Fused Clapton · 手工花式线圈"}},
+  {id:"wire",       label:{en:"WIRE",ru:"ПРОВОЛОКА",zh:"发热丝"},            name:{en:"Wire",ru:"Проволока",zh:"发热丝"},   img:"https://nkcoils.com/wp-content/uploads/2024/09/900x1200-%E7%99%BD%E5%BA%95.0-scaled.jpg",     note:{en:"Clapton / ribbon / round wire on spools",ru:"Проволока Clapton, плоская и круглая, на катушках",zh:"Clapton / Ribbon / Round 成品丝"}},
+  {id:"mods",       label:{en:"MODS",ru:"МОДЫ",zh:"主机"},            name:{en:"Mods",ru:"Моды",zh:"主机"},     img:"https://nkcoils.com/wp-content/uploads/2024/09/MECHLYFE-Paramour-SBS-80W-21700-TC-MOD_0074557800e7.jpg",     note:{en:"SBS mods and DNA-chip devices",ru:"SBS-моды и устройства на платах DNA",zh:"SBS / DNA 芯片主机"}},
+  {id:"boro",       label:{en:"BORO TANKS & RBA",ru:"БАКИ BORO И RBA",zh:"Boro 仓与 RBA"}, name:{en:"Boro Tanks & RBA",ru:"Баки Boro и RBA",zh:"Boro 仓与 RBA"}, img:"https://nkcoils.com/wp-content/uploads/2024/09/Astro-6.jpg", note:{en:"Billet Box compatible RBA bridges and doors",ru:"RBA-мосты и дверцы, совместимые с Billet Box",zh:"Billet Box 兼容 RBA 桥与仓门"}},
+  {id:"atomizers",  label:{en:"ATOMIZERS",ru:"АТОМАЙЗЕРЫ",zh:"雾化器"},       name:{en:"Atomizers",ru:"Атомайзеры",zh:"雾化器"},   img:"https://nkcoils.com/wp-content/uploads/2024/09/DIGUA-RTA.6-scaled.jpg", note:{en:"RTA / RDA rebuildable atomizers",ru:"Обслуживаемые атомайзеры RTA / RDA",zh:"RTA / RDA 重建式雾化器"}},
+  {id:"metal",      label:{en:"METAL WIRE",ru:"МЕТАЛЛИЧЕСКАЯ ПРОВОЛОКА",zh:"金属丝"},      name:{en:"Metal Wire",ru:"Металлическая проволока",zh:"金属丝"},   img:"https://nkcoils.com/wp-content/uploads/2026/11/Nitinol-spool-wire.jpg",    note:{en:"Nitinol and other specialty metal wires",ru:"Нитинол и другая специальная металлическая проволока",zh:"Nitinol 镍钛等特种金属丝"}},
+  {id:"accessories",label:{en:"ACCESSORIES",ru:"АКСЕССУАРЫ",zh:"配件"},     name:{en:"Accessories",ru:"Аксессуары",zh:"配件"},     img:"https://nkcoils.com/wp-content/uploads/2024/09/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240920110349-scaled.jpg", note:{en:"Cotton · drip tips · DIY tools",ru:"Вата · дрип-типы · инструменты для намотки",zh:"棉花 · 滴嘴 · DIY 工具"}}
 ];
-var CATNAME = {}; CATEGORIES.forEach(function(c){ CATNAME[c.id]=c.label; });
+var CATNAME = {}; CATEGORIES.forEach(function(c){ CATNAME[c.id]=c.label.en; });
+var CATBYID = {}; CATEGORIES.forEach(function(c){ CATBYID[c.id]=c; });
 
 var PRODUCTS = [
  {id:1, name:"10 Feet NK Fused Clapton Coil Wire Ni80, High Purity Nichrome 80 Vape Wire With Clean Surface", short:"10 Feet NK Fused Clapton 线圈丝 Ni80", cat:"wire", sub:"Clapton Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/Ni80-Fused-Clapton-Wire-28-Gauge-430x430.jpg", price:"$8.06 – $14.22", old:"", off:"-20%", isNew:true, best:true, acc:true,
@@ -455,24 +465,24 @@ var PRODUCTS = [
   specs:[["产品类型","预制线圈"],["原站分类","8 pcs Pack"],["Color","20. Ni80 Juggernaut / 21. Mirror 27x3-40"]], desc:"NK MTL Ni80 Alien Dual Core DL Fused Clapton Build Vape RTA Coils 8 PCS/Box。"},
  {id:36, name:"NK MTL Wire H-A1 28 Gauge 30Ft New High-Temperature FeCrAl Alloy Resistance Heating Wire For Rba Rta", short:"NK MTL Wire H-A1 28 Gauge 30Ft New High-Temperature FeCrAl…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H0282c6ff581f47d0931022c849f8bbe97-430x430.jpg", price:"$4.26 – $29.41", old:"", off:"", isNew:false, best:false, acc:false,
   specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","1x30ft Ha1 / 2x30ft Ha1 / 5x30ft Ha1 / 1"]], desc:"NK MTL Wire H-A1 28 Gauge 30Ft New High-Temperature FeCrAl Alloy Resistance Heating Wire For Rba Rta。"},
- {id:37, name:"NK Ni200 vape wire temperaturer control wire AWG 26 gauge 28 gauge 30 gauge", short:"NK Ni200 vape wire temperaturer control wire AWG 26 gauge 28…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H45539397f95a42a5be310f4a52a193a0K-430x430.jpg", price:"$5.90", old:"$6.90", off:"-14%", isNew:false, best:false, acc:false,
-  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","Ni200 26Ga 30ft / Ni200 28Ga 30ft / Ni20"]], desc:"NK Ni200 vape wire temperaturer control wire AWG 26 gauge 28 gauge 30 gauge。"},
+ {id:37, name:"NK Ni200 vape wire temperature control wire AWG 26 gauge 28 gauge 30 gauge", short:"NK Ni200 vape wire temperature control wire AWG 26 gauge 28…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H45539397f95a42a5be310f4a52a193a0K-430x430.jpg", price:"$5.90", old:"$6.90", off:"-14%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","Ni200 26Ga 30ft / Ni200 28Ga 30ft / Ni20"]], desc:"NK Ni200 vape wire temperature control wire AWG 26 gauge 28 gauge 30 gauge。"},
  {id:38, name:"NK Ni80 DIY Coils Clean Prebuilt Triple Fused Clapton Vape Wire Flat Ribbon Heating E-cig RTA RDTA RDA RBA MTL Pre-made Coils", short:"NK Ni80 DIY Coils Clean Prebuilt Triple Fused Clapton Vape…", cat:"prebuilt", sub:"8 pcs Pack", img:"https://nkcoils.com/wp-content/uploads/2024/11/H622808a469784db0af45f7e87111e712j-1-430x430.jpg", price:"$2.92 – $6.00", old:"", off:"", isNew:false, best:false, acc:false,
   specs:[["产品类型","预制线圈"],["原站分类","8 pcs Pack"],["Color","20. Ni80 Juggernaut / 21. Mirror 27x3-40"]], desc:"NK Ni80 DIY Coils Clean Prebuilt Triple Fused Clapton Vape Wire Flat Ribbon Heating E-cig RTA RDTA RDA RBA MTL Pre-made Coils。"},
  {id:39, name:"NK Ni80 Fused Clapton Dual Core Prebuilt Coils 26G*2+36G – 0.30 Ohm for Vape Tank Zeus x RTA Atomizer Solo RDA Fast Heating", short:"NK Ni80 Fused Clapton Dual Core Prebuilt Coils 26G*2+36G –…", cat:"prebuilt", sub:"100 pcs Pack", img:"https://nkcoils.com/wp-content/uploads/2024/11/U59107cf0437e4481ac09cc058ac34886F-430x430.jpg", price:"$3.85 – $25.00", old:"", off:"", isNew:false, best:false, acc:false,
   specs:[["产品类型","预制线圈"],["原站分类","100 pcs Pack"],["Color","10 coils / 50 coils / 100 coils"]], desc:"NK Ni80 Fused Clapton Dual Core Prebuilt Coils 26G*2+36G – 0.30 Ohm for Vape Tank Zeus x RTA Atomizer Solo RDA Fast Heating。"},
  {id:40, name:"NK Nichrome 80 Resistance Heating Wire 40 Gauge", short:"NK Nichrome 80 Resistance Heating Wire 40 Gauge", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2025/10/IMG_7914_%E4%BA%94%E9%87%91%E3%80%81%E5%A1%91%E6%96%99%E7%B2%BE%E4%BF%AEV2_20250318_133104_384_%E4%BF%AE%E5%9B%BE%E7%BB%93%E6%9E%9C_EBUOLJ-430x430.jpeg", price:"$9.99 – $10.99", old:"", off:"", isNew:false, best:false, acc:false,
   specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","Ni80 34ga 1000ft / Ni80 36ga 1000ft / Ni"]], desc:"Premium Ni80 by NK High Purity Smooth Surface Free of Oil, Stain Stable Resistance Bright Annealed Long Service Life"},
- {id:41, name:"NK NiFe70 wire temperaturer control vape wire AWG 28 gauge 30 gauge", short:"NK NiFe70 wire temperaturer control vape wire AWG 28 gauge…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H3349db69176546efaa5996eb4a5d64301-430x430.jpg", price:"$5.90", old:"$6.90", off:"-14%", isNew:false, best:false, acc:false,
-  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","NiFe70 28G 30Ft / NiFe70 30G 30Ft"]], desc:"NK NiFe70 wire temperaturer control vape wire AWG 28 gauge 30 gauge。"},
+ {id:41, name:"NK NiFe70 wire temperature control vape wire AWG 28 gauge 30 gauge", short:"NK NiFe70 wire temperature control vape wire AWG 28 gauge…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H3349db69176546efaa5996eb4a5d64301-430x430.jpg", price:"$5.90", old:"$6.90", off:"-14%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","NiFe70 28G 30Ft / NiFe70 30G 30Ft"]], desc:"NK NiFe70 wire temperature control vape wire AWG 28 gauge 30 gauge。"},
  {id:42, name:"NK ss316l alien wire resistance vape prebuilt coil alien clapton ss 316l 0.3×0.8+32g 10ft/roll for ecig DIY premade", short:"NK ss316l alien wire resistance vape prebuilt coil alien…", cat:"wire", sub:"Clapton Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sa4ae441f66c44bb4b6d77c121926bb11E-430x430.jpg", price:"$3.50", old:"$4.50", off:"-22%", isNew:false, best:false, acc:false,
   specs:[["产品类型","发热丝"],["原站分类","Clapton Wire"],["Color","0.3x0.8-32g 10ft"]], desc:"NK ss316l alien wire resistance vape prebuilt coil alien clapton ss 316l 0.3×0.8+32g 10ft/roll for ecig DIY premade。"},
  {id:43, name:"NK ss316l triple fused clapton coil wire 26×3/38ga 10ft spool ss 316l parallel clapton wire for ecig vape prebuilt", short:"NK ss316l triple fused clapton coil wire 26×3/38ga 10ft…", cat:"wire", sub:"Clapton Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H401fee792d3f4ade8116f1df749fe93eU-430x430.jpg", price:"$10.00", old:"$11.00", off:"-9%", isNew:false, best:false, acc:false,
   specs:[["产品类型","发热丝"],["原站分类","Clapton Wire"],["Color","316l 28x3-38g 10ft"]], desc:"NK ss316l triple fused clapton coil wire 26×3/38ga 10ft spool ss 316l parallel clapton wire for ecig vape prebuilt。"},
  {id:44, name:"NK Superfine Ni80 Fused Clapton MTL Rta Mico Coil Wire 10Feet Per Spool", short:"NK Superfine Ni80 Fused Clapton MTL Rta Mico Coil Wire…", cat:"wire", sub:"Clapton Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/S6a61dec6a2f745df8ab714aec78ca7d3z-430x430.jpg", price:"$9.08 – $13.69", old:"", off:"", isNew:false, best:false, acc:false,
   specs:[["产品类型","发热丝"],["原站分类","Clapton Wire"],["Color","Fused Clapton 334 / Twisted Fused 334 / "]], desc:"NK Superfine Ni80 Fused Clapton MTL Rta Mico Coil Wire 10Feet Per Spool。"},
- {id:45, name:"NK titanium wire temperaturer control vape wire AWG 26 gauge 28 gauge 30 gauge", short:"NK titanium wire temperaturer control vape wire AWG 26 gauge…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/Heecf74757a7d4647a601228e5ad3811bw-430x430.jpg", price:"$5.90", old:"$6.90", off:"-14%", isNew:false, best:false, acc:false,
-  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","Titanium 26Ga 30Ft / Titanium 28Ga 30Ft"]], desc:"NK titanium wire temperaturer control vape wire AWG 26 gauge 28 gauge 30 gauge。"},
+ {id:45, name:"NK titanium wire temperature control vape wire AWG 26 gauge 28 gauge 30 gauge", short:"NK titanium wire temperature control vape wire AWG 26 gauge…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/Heecf74757a7d4647a601228e5ad3811bw-430x430.jpg", price:"$5.90", old:"$6.90", off:"-14%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","Titanium 26Ga 30Ft / Titanium 28Ga 30Ft"]], desc:"NK titanium wire temperature control vape wire AWG 26 gauge 28 gauge 30 gauge。"},
  {id:46, name:"NK-Stainless Steel SS316L AWG 20 22 24 26 28 30 32 34 36 38 40 42 Gauge Jewelry Making Food Cutting Atomizer E-cig Heating Wire", short:"NK-Stainless Steel SS316L AWG 20 22 24 26 28 30 32 34 36 38…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/Heb1435cb43c84171b555b47d9bee330aT-430x430.jpg", price:"$3.41 – $12.25", old:"", off:"", isNew:false, best:false, acc:false,
   specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","316L 20G 30Ft / 316L 22G 30Ft / 316L 24G"]], desc:"NK-Stainless Steel SS316L AWG 20 22 24 26 28 30 32 34 36 38 40 42 Gauge Jewelry Making Food Cutting Atomizer E-cig Heating Wire。"},
  {id:47, name:"Original Ambition Mods Pima Cotton 2.5mm & 3mm 7m", short:"Original Ambition Mods Pima Cotton 2.5mm & 3mm 7m", cat:"accessories", sub:"Cotton Wicks", img:"https://nkcoils.com/wp-content/uploads/2024/11/S2a371c5521fc45acb2bf7b1ccc348107L-1-430x430.jpg", price:"$2.99", old:"$5.99", off:"-50%", isNew:false, best:false, acc:false,
@@ -491,8 +501,8 @@ var PRODUCTS = [
   specs:[["产品类型","主机"],["原站分类","Mechanical Mods"],["Color","Stainless steel / Brass / Matte Black / "]], desc:"Original Timesvape Dreamer Clutch Mech Mod 20700 21700 18650 Mechanical Tube Mod。"},
  {id:54, name:"Original Yihi Pioneer4you IPV U710 Box Mod 80W", short:"Original Yihi Pioneer4you IPV U710 Box Mod 80W", cat:"mods", sub:"MTL Mods", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sf2f3c5270a094b599e97a748ee2cd4ael-430x430.jpg", price:"$36.99", old:"$49.80", off:"-26%", isNew:false, best:false, acc:false,
   specs:[["产品类型","主机"],["原站分类","MTL Mods"],["Color","Black / space block"]], desc:"Original Yihi Pioneer4you IPV U710 Box Mod 80W。"},
- {id:55, name:"Original Yihi Pioneer4you iPV V200 Box Mod 200W", short:"Original Yihi Pioneer4you iPV V200 Box Mod 200W", cat:"mods", sub:"High Powder Mods", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sf965716f7ddc47c386252d1d218c51beL-430x430.jpg", price:"$46.99", old:"$58.99", off:"-20%", isNew:false, best:false, acc:false,
-  specs:[["产品类型","主机"],["原站分类","High Powder Mods"],["Color","Woven blue / Aluminum black / Aluminum g"]], desc:"Original Yihi Pioneer4you iPV V200 Box Mod 200W。"},
+ {id:55, name:"Original Yihi Pioneer4you iPV V200 Box Mod 200W", short:"Original Yihi Pioneer4you iPV V200 Box Mod 200W", cat:"mods", sub:"High Power Mods", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sf965716f7ddc47c386252d1d218c51beL-430x430.jpg", price:"$46.99", old:"$58.99", off:"-20%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","High Power Mods"],["Color","Woven blue / Aluminum black / Aluminum g"]], desc:"Original Yihi Pioneer4you iPV V200 Box Mod 200W。"},
  {id:56, name:"Original Yihi SXmini Puremax Pod Kit Vape", short:"Original Yihi SXmini Puremax Pod Kit Vape", cat:"mods", sub:"Mods", img:"https://nkcoils.com/wp-content/uploads/2024/11/A04709dc15a8a4ef5a6cec396042c0432E-430x430.png", price:"$14.99 – $16.99", old:"", off:"", isNew:false, best:false, acc:false,
   specs:[["产品类型","主机"],["原站分类","Mods"],["Color","Silver / Black / Quantum Gunmetal / Quan"]], desc:"Original Yihi SXmini Puremax Pod Kit Vape。"},
  {id:57, name:"Rekavape 415 Stealth Rikimaru Titanium Dna60c SBS MOD", short:"Rekavape 415 Stealth Rikimaru Titanium Dna60c SBS MOD", cat:"mods", sub:"Mods", img:"https://nkcoils.com/wp-content/uploads/2026/06/Rekavape-415-SBS-Mod-1-430x430.jpg", price:"$179.99 – $195.00", old:"", off:"", isNew:false, best:false, acc:false,
@@ -621,64 +631,220 @@ var PRODUCTS = [
   specs:[["产品类型","主机"],["原站分类","MTL Mods"],["Color","YFTK WARFRAME 80W 18350 / YFTK WARFRAME "]], desc:"YFTK WARFRAME 80W 3D printed box mod, accepts 18650 / 18350 / 18500 batteries. Standard 510 thread, ideal for DIY coil…"}
 ];
 
-var state = { cat:"all", q:"" };
+/* ================= i18n: EN / RU / ZH ================= */
+var I18N = {
+  en:{ title:"NKCOILS Showcase — Prebuilt Coils, Wire & Atomizers",
+    searchPh:"Search for products", searchAria:"Search for products", menuOpen:"Open menu", menuClose:"Close menu", navAria:"Product categories", chipAria:"Filter by category", close:"Close", productImg:"Product image",
+    topNote:"<b>Product Showcase</b> · Prebuilt Coils / Wire / Atomizers",
+    heroKicker:"Rebuildable · Coils · Wire",
+    heroTitle:"Precision Prebuilt Coils & Rebuildable Hardware",
+    heroLead:"Hand-wrapped prebuilt coils in high-purity Ni80, Ni90, SS316L and KA1 wire — Alien, Fused Clapton and Framed Staple builds — plus Boro RBA bridges, RTAs and DIY tools, all showcased in one place.",
+    heroCta1:"Browse All Products", heroCta2:"Shop by Category",
+    heroImgAlt:"Close-up of a stainless steel rebuildable atomizer",
+    catHead:"Shop by Category", catSub:"Browse the showcase by category",
+    newHead:"New Arrivals", newSub:"Brand kits, tanks & mods",
+    bestHead:"Best Sellers", bestSub:"High-quality rebuildables & tanks",
+    craftHead:"Craft & Materials", craftSub:"The build standard behind every product on show",
+    f1t:"High-Purity Alloy Wire", f1p:"Ni80, Ni90, SS316L, KA1 and Nitinol nickel-titanium — clean surfaces, even heating and uniform color after dry burning.",
+    f2t:"Hand-Wrapped Builds", f2p:"Alien, Fused Clapton, Framed Staple and other complex builds with even spacing, balancing flavor and vapor production.",
+    f3t:"Cleaned Before Packing", f3p:"Prebuilt coils are cleaned to remove machining oils, so they are ready to install straight from the box with no off-flavors.",
+    f4t:"Full Specifications", f4p:"Every product lists its material, wire gauge, inner diameter and resistance, so you can match it to your RDA, RTA or RBA.",
+    accHead:"Best Accessories", accSub:"Cotton · Drip tips · DIY tools",
+    catalogHead:"All Products", catalogSub:"Tap any product to view its specifications",
+    emptyLine:"No matching products found. Try a different keyword.",
+    viewAll:"View All",
+    footAbout:"A showcase of prebuilt coils, heating wire, metal wire, Boro tanks and RBA bridges, atomizers and DIY accessories. Prices shown are the original site's listed prices, for reference only.",
+    footCatHead:"Categories", footShowHead:"Showcase", footAll:"All Products", footContactHead:"Contact", modalContactHead:"Contact",
+    copyLeft:"© NkCoils Product Showcase", copyRight:"This page is for product display purposes",
+    showNote:"Showcase note: this is a product display page. Only the product's appearance and specifications are shown — for enquiries, please use the contact details above.",
+    refPrice:"List price", itemsSuffix:"products on show", keywordLabel:"Keyword",
+    viewDetails:function(n){ return "View details for " + n; },
+    catCount:function(n){ return n === 1 ? "1 product" : n + " products"; },
+    resultLine:function(cat,n,q){ return cat + " · " + (n === 1 ? "1 product on show" : n + " products on show") + (q ? " · Keyword: \u201C" + q + "\u201D" : ""); }
+  },
+  ru:{ title:"NKCOILS — витрина: готовые спирали, проволока и атомайзеры",
+    searchPh:"Поиск товаров", searchAria:"Поиск товаров", menuOpen:"Открыть меню", menuClose:"Закрыть меню", navAria:"Категории товаров", chipAria:"Фильтр по категориям", close:"Закрыть", productImg:"Фото товара",
+    topNote:"<b>Витрина товаров</b> · Готовые спирали / Проволока / Атомайзеры",
+    heroKicker:"Обслуживаемые устройства · Спирали · Проволока",
+    heroTitle:"Готовые спирали точной намотки и обслуживаемое оборудование",
+    heroLead:"Готовые спирали ручной намотки из проволоки высокой чистоты Ni80, Ni90, SS316L и KA1 — Alien, Fused Clapton и Framed Staple, — а также RBA-мосты Boro, баки RTA и инструменты для самостоятельной намотки. Всё собрано в одном месте.",
+    heroCta1:"Смотреть все товары", heroCta2:"Выбрать по категории",
+    heroImgAlt:"Обслуживаемый атомайзер из нержавеющей стали крупным планом",
+    catHead:"Товары по категориям", catSub:"Просматривайте витрину по категориям",
+    newHead:"Новинки", newSub:"Наборы, баки и моды известных брендов",
+    bestHead:"Хиты продаж", bestSub:"Качественные обслуживаемые устройства и баки",
+    craftHead:"Технологии и материалы", craftSub:"Стандарт изготовления всех представленных товаров",
+    f1t:"Проволока из сплавов высокой чистоты", f1p:"Ni80, Ni90, SS316L, KA1 и никель-титановый нитинол: чистая поверхность, равномерный нагрев и однородный цвет после прожига.",
+    f2t:"Ручная намотка", f2p:"Alien, Fused Clapton, Framed Staple и другие сложные виды намотки с равномерным шагом — баланс вкуса и количества пара.",
+    f3t:"Очистка перед упаковкой", f3p:"Готовые спирали проходят очистку от технических масел, поэтому их можно устанавливать сразу из коробки — без посторонних привкусов.",
+    f4t:"Полные характеристики", f4p:"Для каждого товара указаны материал, сечение проволоки, внутренний диаметр и сопротивление, чтобы подобрать его под ваш RDA, RTA или RBA.",
+    accHead:"Лучшие аксессуары", accSub:"Вата · дрип-типы · инструменты",
+    catalogHead:"Все товары", catalogSub:"Нажмите на товар, чтобы посмотреть характеристики",
+    emptyLine:"Подходящих товаров не найдено. Попробуйте другой запрос.",
+    viewAll:"Смотреть все",
+    footAbout:"Витрина готовых спиралей, нагревательной и металлической проволоки, баков Boro и RBA-мостов, атомайзеров и аксессуаров для самостоятельной намотки. Цены указаны по оригинальному сайту и приведены только для справки.",
+    footCatHead:"Категории", footShowHead:"Витрина", footAll:"Все товары", footContactHead:"Контакты", modalContactHead:"Контакты",
+    copyLeft:"© NkCoils — витрина товаров", copyRight:"Эта страница предназначена только для демонстрации товаров",
+    showNote:"Примечание: это демонстрационная страница. Здесь показаны только внешний вид и характеристики товара. По вопросам обращайтесь по контактам выше.",
+    refPrice:"Цена по прайсу", itemsSuffix:"товаров на витрине", keywordLabel:"Запрос",
+    viewDetails:function(n){ return "Подробнее: " + n; },
+    catCount:function(n){ var w = (n % 10 === 1 && n % 100 !== 11) ? "товар" : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? "товара" : "товаров"); return n + " " + w; },
+    resultLine:function(cat,n,q){ var w = (n % 10 === 1 && n % 100 !== 11) ? "товар" : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? "товара" : "товаров"); return cat + " · на витрине: " + n + " " + w + (q ? " · Запрос: \u00AB" + q + "\u00BB" : ""); }
+  },
+  zh:{ title:"NKCOILS 展示站 — 预制线圈 · 发热丝 · 雾化器产品展示",
+    searchPh:"搜索产品", searchAria:"搜索产品", menuOpen:"打开菜单", menuClose:"关闭菜单", navAria:"产品分类", chipAria:"分类筛选", close:"关闭", productImg:"产品图",
+    topNote:"<b>产品展示站</b> · 预制线圈 / 发热丝 / 雾化器",
+    heroKicker:"可重建设备 · 线圈 · 发热丝",
+    heroTitle:"精工预制线圈与重建雾化硬件",
+    heroLead:"Ni80 / Ni90 / SS316L / KA1 高纯度发热丝手工绕制，Alien、Fused Clapton、Framed Staple 全系列预制线圈，以及 Boro RBA、RTA 与 DIY 工具 —— 全部产品在此集中展示。",
+    heroCta1:"浏览全部产品", heroCta2:"按分类看",
+    heroImgAlt:"不锈钢重建式雾化器特写",
+    catHead:"按分类浏览", catSub:"按分类浏览展示产品",
+    newHead:"新品上架", newSub:"品牌套装 / 雾化器 / 主机",
+    bestHead:"热销产品", bestSub:"高品质重建式设备与雾化器",
+    craftHead:"工艺与材质", craftSub:"展示产品共同的制作标准",
+    f1t:"高纯度合金丝", f1p:"Ni80、Ni90、SS316L、KA1 与镍钛 Nitinol，表面洁净、发热均匀，干烧后呈现均匀色泽。",
+    f2t:"手工绕制工艺", f2p:"Alien、Fused Clapton、Framed Staple 等复杂花式绕法，绕距均匀，兼顾口感与烟雾量。",
+    f3t:"出厂清洗处理", f3p:"预制线圈系列经清洗工序去除油污，开盒即可安装使用，减少异味与杂味。",
+    f4t:"完整规格标注", f4p:"每款产品标注材质、线规、内径与电阻值，方便按 RDA / RTA / RBA 设备匹配选型。",
+    accHead:"精选配件", accSub:"棉花 · 滴嘴 · DIY 工具",
+    catalogHead:"全部产品展示", catalogSub:"点击任意产品查看规格详情",
+    emptyLine:"没有找到匹配的产品，换个关键词试试。",
+    viewAll:"查看全部",
+    footAbout:"预制线圈、发热丝、金属丝、Boro 仓与 RBA、雾化器及 DIY 配件的产品展示站。页面价格为原站公开标价，仅供选型参考。",
+    footCatHead:"产品分类", footShowHead:"展示", footAll:"全部产品", footContactHead:"联系方式", modalContactHead:"联系方式",
+    copyLeft:"© NkCoils 产品展示站", copyRight:"本页面为产品展示用途",
+    showNote:"展示说明：本页为产品展示站，该产品仅展示外观与规格信息，咨询请通过上方联系方式联系。",
+    refPrice:"参考价", itemsSuffix:"款展示", keywordLabel:"关键词",
+    viewDetails:function(n){ return "查看 " + n + " 详情"; },
+    catCount:function(n){ return n + " 款展示"; },
+    resultLine:function(cat,n,q){ return cat + " · 共 " + n + " 款展示" + (q ? " · 关键词「" + q + "」" : ""); }
+  }
+};
+/* Spec label/value translation for catalogue entries */
+var SPEC_I18N = {
+  "产品类型":{en:"Type",ru:"Тип товара"},
+  "原站分类":{en:"Original Category",ru:"Категория на исходном сайте"},
+  "直径":{en:"Diameter",ru:"Диаметр"},
+  "容量":{en:"Capacity",ru:"Объём"},
+  "预制线圈":{en:"Prebuilt Coils",ru:"Готовые спирали"},
+  "发热丝":{en:"Heating Wire",ru:"Нагревательная проволока"},
+  "主机":{en:"Mod",ru:"Мод"},
+  "雾化器":{en:"Atomizer",ru:"Атомайзер"},
+  "配件":{en:"Accessory",ru:"Аксессуар"},
+  "Boro 仓与 RBA":{en:"Boro Tank & RBA",ru:"Бак Boro и RBA"},
+  "Color":{en:"Color / Variant",ru:"Цвет / вариант"}
+};
+function trSpec(text, lang){
+  if(lang === "zh") return text;
+  var hit = SPEC_I18N[text];
+  return hit ? hit[lang] : text;
+}
+/* Curated EN / RU copy for the first 25 products (model names stay in English) */
+var PROD_I18N = {
+  1:{short:{en:"10 ft NK Fused Clapton Coil Wire, Ni80",ru:"Проволока NK Fused Clapton, Ni80, 10 футов"},desc:{en:"High-purity Nichrome 80 heating wire with a clean surface and pure flavor. The Fused Clapton build balances ramp-up speed and vapor production.",ru:"Нагревательная проволока из нихрома 80 высокой чистоты: чистая поверхность и чистый вкус. Намотка Fused Clapton сочетает быстрый нагрев и большое количество пара."},specs:{en:[["Material","Ni80 nichrome alloy"],["Build","Fused Clapton"],["Length","10 ft"],["Best for","MTL RTA / DL RDA / RDTA"]],ru:[["Материал","Нихром Ni80"],["Намотка","Fused Clapton"],["Длина","10 футов"],["Подходит для","MTL RTA / DL RDA / RDTA"]]}},
+  2:{short:{en:"10 pcs 0.3 Ω Phantom DIY Coils, SS316L",ru:"Спирали Phantom DIY 0,3 Ом, SS316L, 10 шт."},desc:{en:"316L stainless steel prebuilt coils for wattage and temperature-control modes. The 3.5 mm inner diameter fits most rebuildable atomizers.",ru:"Готовые спирали из нержавеющей стали 316L для режимов вариватта и термоконтроля. Внутренний диаметр 3,5 мм подходит для большинства обслуживаемых атомайзеров."},specs:{en:[["Material","SS316L stainless steel"],["Resistance","0.3 Ω"],["Inner diameter","3.5 mm"],["Quantity","10 pcs"]],ru:[["Материал","Нержавеющая сталь SS316L"],["Сопротивление","0,3 Ом"],["Внутренний диаметр","3,5 мм"],["Количество","10 шт."]]}},
+  3:{short:{en:"10 pcs Ni80 Alien Coils · Turn Blue After Dry Burning",ru:"Спирали Alien Ni80, 10 шт. · Синеют после прожига"},desc:{en:"The classic Alien wavy wrap wicks fast and delivers layered flavor. After dry burning it takes on its signature blue oxidation color.",ru:"Классическая волнообразная обмотка Alien быстро проводит жидкость и даёт многогранный вкус. После прожига приобретает фирменный синий цвет окисления."},specs:{en:[["Material","Ni80"],["Build","Alien, triple core"],["Best for","Zeus X RTA / RDA / RDTA"],["Feature","Turns blue after dry burning"]],ru:[["Материал","Ni80"],["Намотка","Alien, три жилы"],["Подходит для","Zeus X RTA / RDA / RDTA"],["Особенность","Синеет после прожига"]]}},
+  4:{short:{en:"2 m Superelastic Nitinol Straight Wire, Black Oxide",ru:"Прямая проволока из нитинола, суперэластичная, 2 м"},desc:{en:"Superelastic nickel-titanium alloy straight wire with a black oxide finish. Sizes from 0.1 mm to 5.0 mm for DIY and industrial use.",ru:"Прямая проволока из суперэластичного никель-титанового сплава с чёрным оксидным покрытием. Диаметры от 0,1 до 5,0 мм — для DIY и промышленного применения."},specs:{en:[["Material","Nitinol nickel-titanium alloy"],["Finish","Black oxide"],["Diameter","0.1 – 5.0 mm"],["Length","2 m"]],ru:[["Материал","Нитинол (никель-титановый сплав)"],["Покрытие","Чёрное оксидное"],["Диаметр","0,1 – 5,0 мм"],["Длина","2 м"]]}},
+  5:{short:{en:"2.5 / 3.0 mm MTL Organic Cotton, 2 m per Bag",ru:"Органическая вата MTL 2,5 / 3,0 мм, 2 м в упаковке"},desc:{en:"Pre-formed cotton strips sized for MTL coils. Natural organic cotton with no taste of its own and fast wicking — rewicking made easy.",ru:"Готовые полоски ваты под MTL-спирали. Натуральная органическая вата без постороннего вкуса, быстро проводит жидкость — замена ваты занимает минуту."},specs:{en:[["Sizes","2.5 / 3.0 mm"],["Material","Natural organic cotton"],["Length","2 m per bag"],["Features","Tasteless · fast wicking"]],ru:[["Размеры","2,5 / 3,0 мм"],["Материал","Натуральная органическая вата"],["Длина","2 м в упаковке"],["Особенности","Без вкуса · быстрая проводимость"]]}},
+  6:{short:{en:"2 pcs Handmade Ni80 Fused Ribbon Alien Coils",ru:"Спирали Fused Ribbon Alien Ni80 ручной работы, 2 шт."},desc:{en:"Handmade high-end fancy coils. The flat-wire Alien and Framed Staggered builds deliver rich, dense flavor.",ru:"Сложные спирали ручной работы премиум-класса. Конструкции Alien из плоской проволоки и Framed Staggered дают насыщенный, плотный вкус."},specs:{en:[["Material","Ni80"],["Craft","Handmade"],["Build","Fused Ribbon Alien / Framed Staggered"],["Quantity","2 pcs"]],ru:[["Материал","Ni80"],["Изготовление","Ручная работа"],["Намотка","Fused Ribbon Alien / Framed Staggered"],["Количество","2 шт."]]}},
+  7:{short:{en:"50 pcs Cleaned Prebuilt Coils — NK A1 / Ni80 / Ni70",ru:"Очищенные готовые спирали, 50 шт. — NK A1 / Ni80 / Ni70"},desc:{en:"Cleaned bulk-pack prebuilt coils in a choice of materials and gauges — an everyday staple for RDA, RTA and RBA rebuilding.",ru:"Готовые спирали в большой упаковке, прошедшие очистку. Несколько материалов и сечений на выбор — на каждый день для RDA, RTA и RBA."},specs:{en:[["Material","A1 / Ni80 / Ni70"],["Gauges","AWG 20 – 30 available"],["Quantity","50 pcs"],["Treatment","Cleaned at the factory"]],ru:[["Материал","A1 / Ni80 / Ni70"],["Сечения","AWG 20 – 30 на выбор"],["Количество","50 шт."],["Обработка","Заводская очистка"]]}},
+  8:{short:{en:"50 × Alien Coils, Ni80, 0.22 Ω",ru:"Спирали Alien Ni80 0,22 Ом, 50 шт."},desc:{en:"A 50-piece pack of Alien coils with consistent resistance — ideal for frequent re-builders and workshop use.",ru:"Упаковка из 50 спиралей Alien со стабильным сопротивлением — для тех, кто часто перематывает, и для мастерских."},specs:{en:[["Material","Ni80"],["Build","Alien"],["Resistance","0.22 Ω"],["Quantity","50 pcs"]],ru:[["Материал","Ni80"],["Намотка","Alien"],["Сопротивление","0,22 Ом"],["Количество","50 шт."]]}},
+  9:{short:{en:"50 × Big Coils, ID 3.5 mm, Fused Clapton Ni80",ru:"Большие спирали ID 3,5 мм Fused Clapton Ni80, 50 шт."},desc:{en:"Large inner-diameter Fused Clapton coils with roomy wicking space, made for high-airflow RDAs and high-power devices.",ru:"Спирали Fused Clapton с большим внутренним диаметром и запасом под вату — для RDA с мощным обдувом и устройств высокой мощности."},specs:{en:[["Material","Ni80"],["Build","Fused Clapton"],["Inner diameter","3.5 mm"],["Resistance","0.70 Ω"]],ru:[["Материал","Ni80"],["Намотка","Fused Clapton"],["Внутренний диаметр","3,5 мм"],["Сопротивление","0,70 Ом"]]}},
+  10:{short:{en:"521 TAB Mini Coil Building & Burning Station, Ohm Meter",ru:"Станция 521 TAB Mini: прожиг спиралей и замер сопротивления"},desc:{en:"A mini platform that combines coil burning and resistance measurement — build, tune and test in one device.",ru:"Мини-платформа, объединяющая прожиг спиралей и измерение сопротивления: намотка, настройка и проверка в одном устройстве."},specs:{en:[["Functions","Coil burning / resistance measurement"],["Power","18650 battery"],["Display","LED digital"],["Use","DIY coil-building platform"]],ru:[["Функции","Прожиг спиралей / измерение сопротивления"],["Питание","Аккумулятор 18650"],["Дисплей","Светодиодный цифровой"],["Назначение","Платформа для самостоятельной намотки"]]}},
+  11:{short:{en:"8 pcs NK Premium SS316L Coil Set",ru:"Набор спиралей NK Premium SS316L, 8 шт."},desc:{en:"Premium-series 316L stainless coils with fast ramp-up and accurate flavor. Several fancy builds to choose from.",ru:"Спирали премиум-серии из нержавеющей стали 316L: быстрый нагрев и точная передача вкуса. Несколько видов сложной намотки на выбор."},specs:{en:[["Material","SS316L"],["Build","Alien / Clapton / Fused Clapton options"],["Quantity","8 pcs"],["Best for","MTL RTA / RBA / RDA"]],ru:[["Материал","SS316L"],["Намотка","Alien / Clapton / Fused Clapton на выбор"],["Количество","8 шт."],["Подходит для","MTL RTA / RBA / RDA"]]}},
+  12:{short:{en:"A1 Ribbon Wire 0.3 × 0.8 mm, 100 ft per Spool",ru:"Плоская проволока A1 0,3 × 0,8 мм, 100 футов на катушке"},desc:{en:"The A1 flat wire most often used in DIY fancy coils — 0.3 × 0.8 mm, ideal for Alien and Staple builds.",ru:"Плоская проволока A1, самая востребованная в сложных намотках, — 0,3 × 0,8 мм, подходит для конструкций Alien и Staple."},specs:{en:[["Material","Kanthal A1"],["Size","0.3 × 0.8 mm"],["Length","100 ft per spool"],["Use","DIY fancy coils"]],ru:[["Материал","Кантал A1"],["Размер","0,3 × 0,8 мм"],["Длина","100 футов на катушке"],["Назначение","Сложные спирали своими руками"]]}},
+  13:{short:{en:"Bastard V2 RTA, SXK Style, 22 mm",ru:"Bastard V2 RTA в стиле SXK, 22 мм"},desc:{en:"A rebuildable tank built for MTL flavor, supplied with multiple airflow pins to adjust the draw from tight to smooth.",ru:"Обслуживаемый бак, созданный для вкуса MTL. В комплекте несколько пинов обдува — тяга регулируется от тугой до свободной."},specs:{en:[["Diameter","22 mm"],["Capacity","3.5 ml"],["Airflow pins","1 / 1.2 / 1.5 / 2 / 2.5 / 3 mm"],["Type","MTL RTA"]],ru:[["Диаметр","22 мм"],["Объём","3,5 мл"],["Пины обдува","1 / 1,2 / 1,5 / 2 / 2,5 / 3 мм"],["Тип","MTL RTA"]]}},
+  14:{short:{en:"UNKWN RBA Bridge, Boro Compatible",ru:"RBA-мост UNKWN, совместим с Boro"},desc:{en:"An RBA bridge designed for Boro devices. Six airflow pin sizes cover the range from MTL to RDL draws.",ru:"RBA-мост для устройств формата Boro. Шесть размеров пинов обдува перекрывают диапазон от MTL до RDL."},specs:{en:[["Compatibility","Billet Box / Boro devices"],["Airflow pins","1.2 / 1.5 / 2.5 / 3.0 / 3.5 / 4.0"],["Type","RBA bridge"],["Included","Multiple airflow pins"]],ru:[["Совместимость","Billet Box / устройства Boro"],["Пины обдува","1,2 / 1,5 / 2,5 / 3,0 / 3,5 / 4,0"],["Тип","RBA-мост"],["В комплекте","Пины обдува нескольких размеров"]]}},
+  15:{short:{en:"Pre-Cut Cotton Wicks for 3 mm Coils",ru:"Нарезанная вата для спиралей 3 мм"},desc:{en:"Cotton strips pre-cut for 3 mm coils with a threading tip — wicking in a single step.",ru:"Полоски ваты, заранее нарезанные под спирали 3 мм, с кончиком для продевания — укладка ваты в одно движение."},specs:{en:[["Size","For 3 mm coils"],["Form","Pre-cut strips"],["Material","Organic cotton"],["Features","No measuring · quick threading"]],ru:[["Размер","Для спиралей 3 мм"],["Форма","Нарезанные полоски"],["Материал","Органическая вата"],["Особенности","Без замеров · быстрое продевание"]]}},
+  16:{short:{en:"DNA60C Replacement Screen, 2 pcs OLED Panels",ru:"Сменный экран DNA60C, 2 OLED-панели"},desc:{en:"Replacement OLED screens for DNA60C devices, in a pack of two — for repairs and modding spares.",ru:"Сменные OLED-экраны для устройств на плате DNA60C, 2 штуки в упаковке — для ремонта и запаса при моддинге."},specs:{en:[["Chip","DNA60C"],["Type","OLED display panel"],["Quantity","2 pcs"],["Use","Device repair / replacement"]],ru:[["Плата","DNA60C"],["Тип","OLED-дисплей"],["Количество","2 шт."],["Назначение","Ремонт и замена в устройствах"]]}},
+  17:{short:{en:"Coils for Dovpo BLOTTO MAX 28 mm RTA",ru:"Спирали для Dovpo BLOTTO MAX RTA 28 мм"},desc:{en:"Prebuilt coils made for large-diameter RTAs. Single or dual installation for big-vapor setups.",ru:"Готовые спирали для баков большого диаметра. Установка одной или двух спиралей — под setups с большим количеством пара."},specs:{en:[["Fits","BLOTTO MAX 28 mm RTA"],["Material","Ni80 / SS316L"],["Build","Fused Clapton"],["Setup","Single / dual coil"]],ru:[["Совместимость","BLOTTO MAX RTA 28 мм"],["Материал","Ni80 / SS316L"],["Намотка","Fused Clapton"],["Установка","Одна / две спирали"]]}},
+  18:{short:{en:"Hussar MTL RBA Bridge, SS316, 8 Air Pins",ru:"RBA-мост Hussar MTL, SS316, 8 пинов обдува"},desc:{en:"A 316 stainless steel MTL RBA bridge supplied with 8 airflow pins for fine draw adjustment.",ru:"RBA-мост формата MTL из нержавеющей стали 316. В комплекте 8 пинов обдува для точной настройки тяги."},specs:{en:[["Material","SS316"],["Compatibility","SXK BB / Billet Box / Boro"],["Airflow pins","2.0 – 4.5 mm, 8 sizes"],["Style","MTL"]],ru:[["Материал","SS316"],["Совместимость","SXK BB / Billet Box / Boro"],["Пины обдува","2,0 – 4,5 мм, 8 размеров"],["Тип затяжки","MTL"]]}},
+  19:{short:{en:"Kong-Fu Organic Vape Cotton",ru:"Органическая вата Kong-Fu для вейпа"},desc:{en:"Long-staple organic cotton: fast wicking, heat-resistant and tasteless — a rebuildable staple for everyday builds.",ru:"Органическая вата из длинного волокна: быстро проводит жидкость, устойчива к нагреву и не даёт привкуса — расходник на каждый день."},specs:{en:[["Material","Long-staple organic cotton"],["Features","Tasteless · heat-resistant"],["Wicking","Fast"],["Packaging","Tin box"]],ru:[["Материал","Органическая вата, длинное волокно"],["Особенности","Без вкуса · термостойкая"],["Проводимость","Быстрая"],["Упаковка","Жестяная коробка"]]}},
+  20:{short:{en:"Long 510 Drip Tip for MTL RTA",ru:"Длинный дрип-тип 510 для MTL RTA"},desc:{en:"An extended 510 drip tip that concentrates airflow and flavor on MTL setups.",ru:"Удлинённый дрип-тип 510: концентрирует поток воздуха и вкус на MTL-устройствах."},specs:{en:[["Connection","510"],["Style","MTL RTA"],["Options","Multiple colors"],["Feature","Extended, flavor-focusing"]],ru:[["Посадка","510"],["Тип","Для MTL RTA"],["Варианты","Несколько цветов"],["Особенность","Удлинённый, концентрирует вкус"]]}},
+  21:{short:{en:"Monarchy Boro Doors, Multiple Colors",ru:"Дверцы Boro Monarchy, несколько цветов"},desc:{en:"Replacement doors for Boro devices in a range of colors — an easy way to refresh your device's look.",ru:"Сменные дверцы для устройств Boro в разных цветах — простой способ обновить внешний вид устройства."},specs:{en:[["Type","Boro door / panel"],["Options","Multiple colors"],["Compatibility","Boro devices"],["Use","Appearance customization"]],ru:[["Тип","Дверца / панель Boro"],["Варианты","Несколько цветов"],["Совместимость","Устройства Boro"],["Назначение","Изменение внешнего вида"]]}},
+  22:{short:{en:"MTL Coil Jig & Ceramic Tweezers, DIY Tools",ru:"Джиг для намотки MTL и керамический пинцет"},desc:{en:"A basic tool set for winding and adjusting coils. The ceramic tweezers are heat-resistant, so coils can be adjusted while firing.",ru:"Базовый набор инструментов для намотки и настройки спиралей. Керамический пинцет не боится нагрева — спираль можно поправлять прямо при прожиге."},specs:{en:[["Tools","Coil jig / ceramic tweezers"],["Use","Winding · adjusting coils"],["Materials","Stainless steel / ceramic"],["Style","MTL DIY"]],ru:[["Инструменты","Джиг для намотки / керамический пинцет"],["Назначение","Намотка и настройка спиралей"],["Материалы","Нержавеющая сталь / керамика"],["Тип","Для MTL, DIY"]]}},
+  23:{short:{en:"Ni80 Ribbon Flat Wire, 30 / 100 ft per Spool",ru:"Плоская проволока Ni80, 30 / 100 футов на катушке"},desc:{en:"Ni80 flat wire — the core material for Staple, Framed Staple and other advanced builds.",ru:"Плоская проволока Ni80 — основной материал для намоток Staple, Framed Staple и других сложных конструкций."},specs:{en:[["Material","Ni80"],["Type","Ribbon flat wire"],["Length","30 / 100 ft"],["Use","DIY fancy coils"]],ru:[["Материал","Ni80"],["Тип","Плоская проволока (Ribbon)"],["Длина","30 / 100 футов"],["Назначение","Сложные спирали своими руками"]]}},
+  24:{short:{en:"NK 100 ft KA1 Round Wire, Multiple Gauges",ru:"Круглая проволока NK KA1, 100 футов, несколько сечений"},desc:{en:"The classic KA1 round wire with a full range of gauges — the all-purpose choice for plain builds and as a base for fancy coils.",ru:"Классическая круглая проволока KA1 с полным рядом сечений — универсальный вариант для простых намоток и основа для сложных спиралей."},specs:{en:[["Material","Kanthal A1"],["Gauges","24 / 26 / 28 / 30 / 32 ga"],["Length","100 ft"],["Type","Round wire"]],ru:[["Материал","Кантал A1"],["Сечения","24 / 26 / 28 / 30 / 32 ga"],["Длина","100 футов"],["Тип","Круглая проволока"]]}},
+  25:{short:{en:"NK 100 pcs Fused Clapton Prebuilt Coils, 0.26 Ω",ru:"Готовые спирали NK Fused Clapton 0,26 Ом, 100 шт."},desc:{en:"A 100-piece bulk pack of Fused Clapton coils. The Ni90 cores ramp up fast — made for dual-coil, high-vapor setups.",ru:"Большая упаковка из 100 готовых спиралей Fused Clapton. Жилы из Ni90 нагреваются очень быстро — вариант для двухспиральных setups с большим количеством пара."},specs:{en:[["Build","3 × 28 ga Ni90 + 38 g Ni80 wrap"],["Resistance","0.26 Ω"],["Quantity","100 pcs"],["Best for","RTA / RDA"]],ru:[["Намотка","3 × 28 ga Ni90 + обмотка 38 g Ni80"],["Сопротивление","0,26 Ом"],["Количество","100 шт."],["Подходит для","RTA / RDA"]]}}
+};
+var state = { cat:"all", q:"", lang:"en" };
 var $ = function(s){ return document.querySelector(s); };
 
+function T(){ return I18N[state.lang]; }
+function catLabel(id){ var c = CATBYID[id]; return c ? c.label[state.lang] : id; }
+function catName(id){ var c = CATBYID[id]; return c ? c.name[state.lang] : id; }
+function prodShort(p){
+  var o = PROD_I18N[p.id];
+  if(o && o.short[state.lang]) return o.short[state.lang];
+  return p.short;
+}
+function prodDesc(p){
+  var o = PROD_I18N[p.id];
+  if(o && o.desc[state.lang]) return o.desc[state.lang];
+  return p.desc;
+}
+function prodSpecs(p){
+  var o = PROD_I18N[p.id];
+  if(o && o.specs[state.lang]) return o.specs[state.lang];
+  if(state.lang === "zh") return p.specs;
+  return p.specs.map(function(s){ return [trSpec(s[0], state.lang), trSpec(s[1], state.lang)]; });
+}
 function priceHTML(p){
   var s = p.old ? "<s>"+p.old+"</s>" : "";
-  return s + p.price + '<span class="ref">参考价</span>';
+  return s + p.price + '<span class="ref">'+T().refPrice+'</span>';
 }
 function cardHTML(p){
-  return '<button class="prod" data-open="'+p.id+'" aria-label="查看 '+p.short+' 详情">'
+  var short = prodShort(p);
+  return '<button class="prod" data-open="'+p.id+'" aria-label="'+T().viewDetails(short)+'">'
     + '<span class="ph">'
     + (p.off ? '<span class="off">'+p.off+'</span>' : '')
     + (p.isNew ? '<span class="tag-new">NEW</span>' : '')
-    + '<img src="'+p.img+'" alt="'+p.short+'" loading="lazy" /></span>'
+    + '<img src="'+p.img+'" alt="'+short+'" loading="lazy" /></span>'
     + '<h3>'+p.name+'</h3>'
     + '<p class="cat">'+p.sub+'</p>'
     + '<p class="price">'+priceHTML(p)+'</p></button>';
 }
 function renderGrid(el, list){ el.innerHTML = list.map(cardHTML).join(""); }
 
-/* Nav */
-var nav = $("#mainNav");
-nav.innerHTML = CATEGORIES.map(function(c){
-  return '<button data-cat="'+c.id+'" class="'+(c.id==="all"?"active":"")+'">'+c.label+'</button>';
-}).join("");
-
-/* Category cards */
-$("#catGrid").innerHTML = CATEGORIES.filter(function(c){return c.id!=="all";}).map(function(c){
-  var n = PRODUCTS.filter(function(p){return p.cat===c.id;}).length;
-  return '<button class="cat-card" data-cat="'+c.id+'"><span class="ph"><img src="'+c.img+'" alt="'+c.cn+'" loading="lazy" /></span>'
-    + '<h3>'+c.label+'</h3><small>'+c.cn+' · '+n+' 款展示</small></button>';
-}).join("");
-
-/* Chips */
-$("#chipRow").innerHTML = CATEGORIES.map(function(c){
-  return '<button class="chip'+(c.id==="all"?" active":"")+'" data-cat="'+c.id+'">'+c.cn+'</button>';
-}).join("");
-
-/* Footer categories */
-$("#footCats").innerHTML = CATEGORIES.filter(function(c){return c.id!=="all";}).map(function(c){
-  return '<li><button data-cat="'+c.id+'">'+c.label+'</button></li>';
-}).join("");
-
-/* Showcase sections (mirror original homepage) */
-renderGrid($("#newGrid"),  PRODUCTS.filter(function(p){return p.isNew;}));
-renderGrid($("#bestGrid"), PRODUCTS.filter(function(p){return p.best;}));
-renderGrid($("#accGrid"),  PRODUCTS.filter(function(p){return p.acc;}).slice(0,10));
+function renderChrome(){
+  var t = T();
+  /* Nav */
+  $("#mainNav").innerHTML = CATEGORIES.map(function(c){
+    return '<button data-cat="'+c.id+'" class="'+(c.id===state.cat?"active":"")+'">'+c.label[state.lang]+'</button>';
+  }).join("");
+  /* Category cards */
+  $("#catGrid").innerHTML = CATEGORIES.filter(function(c){return c.id!=="all";}).map(function(c){
+    var n = PRODUCTS.filter(function(p){return p.cat===c.id;}).length;
+    return '<button class="cat-card" data-cat="'+c.id+'"><span class="ph"><img src="'+c.img+'" alt="'+c.name[state.lang]+'" loading="lazy" /></span>'
+      + '<h3>'+c.label[state.lang]+'</h3><small>'+c.note[state.lang]+' · '+t.catCount(n)+'</small></button>';
+  }).join("");
+  /* Chips */
+  $("#chipRow").innerHTML = CATEGORIES.map(function(c){
+    return '<button class="chip'+(c.id===state.cat?" active":"")+'" data-cat="'+c.id+'">'+c.name[state.lang]+'</button>';
+  }).join("");
+  /* Footer categories */
+  $("#footCats").innerHTML = CATEGORIES.filter(function(c){return c.id!=="all";}).map(function(c){
+    return '<li><button data-cat="'+c.id+'">'+c.label[state.lang]+'</button></li>';
+  }).join("");
+  /* Showcase sections (mirror original homepage) */
+  renderGrid($("#newGrid"),  PRODUCTS.filter(function(p){return p.isNew;}));
+  renderGrid($("#bestGrid"), PRODUCTS.filter(function(p){return p.best;}));
+  renderGrid($("#accGrid"),  PRODUCTS.filter(function(p){return p.acc;}).slice(0,10));
+}
 
 function applyFilter(){
   var list = PRODUCTS.filter(function(p){
     var okCat = state.cat==="all" || p.cat===state.cat;
     var q = state.q.trim().toLowerCase();
-    var okQ = !q || (p.name+" "+p.short+" "+p.sub+" "+CATNAME[p.cat]).toLowerCase().indexOf(q) > -1;
+    var c = CATBYID[p.cat];
+    var hay = (p.name+" "+p.short+" "+prodShort(p)+" "+p.sub+" "+(c ? c.name.en+" "+c.name.ru+" "+c.name.zh : "")).toLowerCase();
+    var okQ = !q || hay.indexOf(q) > -1;
     return okCat && okQ;
   });
   renderGrid($("#catalogGrid"), list);
   $("#emptyLine").style.display = list.length ? "none" : "block";
-  var catLabel = state.cat==="all" ? "全部产品" : CATNAME[state.cat];
-  $("#resultLine").textContent = catLabel + " · 共 " + list.length + " 款展示" + (state.q ? " · 关键词「" + state.q + "」" : "");
+  $("#resultLine").textContent = T().resultLine(catName(state.cat), list.length, state.q);
   document.querySelectorAll("[data-cat]").forEach(function(b){
     var on = b.getAttribute("data-cat")===state.cat;
     if(b.classList.contains("chip") || b.closest("nav")) b.classList.toggle("active", on);
@@ -720,14 +886,14 @@ var back = $("#modalBack"), lastFocus = null;
 function openModal(id){
   var p = PRODUCTS.filter(function(x){return x.id===id;})[0]; if(!p) return;
   lastFocus = document.activeElement;
-  $("#modalImg").src = p.img; $("#modalImg").alt = p.short;
-  $("#modalCat").textContent = CATNAME[p.cat] + " · " + p.sub;
+  $("#modalImg").src = p.img; $("#modalImg").alt = prodShort(p);
+  $("#modalCat").textContent = catLabel(p.cat) + " · " + p.sub;
   $("#modalName").textContent = p.name;
   $("#modalPrice").innerHTML = priceHTML(p);
-  $("#modalSpec").innerHTML = p.specs.map(function(s){
+  $("#modalSpec").innerHTML = prodSpecs(p).map(function(s){
     return "<div><dt>"+s[0]+"</dt><dd>"+s[1]+"</dd></div>";
   }).join("");
-  $("#modalDesc").textContent = p.desc;
+  $("#modalDesc").textContent = prodDesc(p);
   back.classList.add("open");
   $("#modalClose").focus();
 }
@@ -736,7 +902,47 @@ $("#modalClose").addEventListener("click", closeModal);
 back.addEventListener("click", function(e){ if(e.target===back) closeModal(); });
 document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeModal(); });
 
-applyFilter();
+/* Language switching */
+function applyLang(){
+  var t = T(), lang = state.lang;
+  document.documentElement.lang = lang === "ru" ? "ru" : (lang === "zh" ? "zh-CN" : "en");
+  document.title = t.title;
+  var si = $("#searchInput");
+  si.placeholder = t.searchPh; si.setAttribute("aria-label", t.searchAria);
+  $("#searchBtn").setAttribute("aria-label", t.searchAria);
+  $("#menuBtn").setAttribute("aria-label", t.menuOpen);
+  $("#mainNav").setAttribute("aria-label", t.navAria);
+  $("#chipRow").setAttribute("aria-label", t.chipAria);
+  $("#craftSec").setAttribute("aria-label", t.craftHead);
+  $("#modalClose").setAttribute("aria-label", t.close);
+  $("#modalImg").setAttribute("alt", t.productImg);
+  $("#topNote").innerHTML = t.topNote;
+  $("#heroKicker").textContent = t.heroKicker;
+  $("#heroTitle").textContent = t.heroTitle;
+  $("#heroLead").textContent = t.heroLead;
+  $("#heroCta1").textContent = t.heroCta1;
+  $("#heroCta2").textContent = t.heroCta2;
+  $("#heroImg").setAttribute("alt", t.heroImgAlt);
+  var ids = ["catHead","catSub","newHead","newSub","bestHead","bestSub","craftHead","craftSub","f1t","f1p","f2t","f2p","f3t","f3p","f4t","f4p","accHead","accSub","catalogHead","catalogSub","emptyLine","footAbout","footCatHead","footShowHead","footAll","footContactHead","copyLeft","copyRight","showNote","modalContactHead"];
+  ids.forEach(function(id){ var el = document.getElementById(id); if(el) el.textContent = t[id]; });
+  document.querySelectorAll("[data-i18n]").forEach(function(el){ el.textContent = t[el.getAttribute("data-i18n")]; });
+  document.querySelectorAll("#langSwitch button").forEach(function(b){
+    b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+  });
+  renderChrome();
+  applyFilter();
+}
+function setLang(lang){
+  if(!I18N[lang]) return;
+  state.lang = lang;
+  applyLang();
+}
+$("#langSwitch").addEventListener("click", function(e){
+  var b = e.target.closest("[data-lang]");
+  if(b) setLang(b.getAttribute("data-lang"));
+});
+
+applyLang();
 </script>
 </body>
 </html>
