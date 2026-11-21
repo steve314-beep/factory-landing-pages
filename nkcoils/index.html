@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>NKCOILS 展示站 — 预制线圈 · 发热丝 · 雾化器产品展示</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --blue:#0b5fa5; --blue-dark:#084c86; --blue-soft:#e8f2f9;
+    --ink:#1c2733; --muted:#6b7a89; --line:#e4eaf0;
+    --bg:#ffffff; --bg-soft:#f6f9fb; --card:#ffffff;
+    --badge:#0b5fa5; --price:#0b5fa5;
+    --hero-bg:#10151b;
+    --shadow:0 10px 30px rgba(16,42,67,.10);
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#e8eef4; --muted:#9db0c1; --line:#263646;
+      --bg:#0d141b; --bg-soft:#111c26; --card:#14202c;
+      --blue-soft:#14304a; --shadow:0 10px 30px rgba(0,0,0,.45);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Poppins","Noto Sans SC",system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;min-height:2.25rem}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+
+  /* ---------- Header ---------- */
+  header.site{position:sticky;top:0;z-index:60;background:var(--bg);border-bottom:1px solid var(--line)}
+  .topbar{display:flex;align-items:center;gap:20px;padding:14px 0 10px}
+  .searchbox{flex:0 1 300px;display:flex;align-items:center;border:1.5px solid var(--line);border-radius:999px;padding:0 6px 0 16px;height:44px;background:var(--bg)}
+  .searchbox input{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:.86rem;color:var(--ink);min-width:0}
+  .searchbox button{border:0;background:transparent;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--muted)}
+  .logo{margin:0 auto;font-size:2rem;font-weight:800;letter-spacing:-.5px;color:var(--blue);line-height:1;white-space:nowrap}
+  .logo .ring{display:inline-grid;place-items:center;width:.98em;height:.98em;border:.11em solid var(--blue);border-radius:50%;font-size:.82em;vertical-align:-.08em;margin:0 .01em}
+  .top-note{flex:0 1 300px;text-align:right;font-size:.78rem;color:var(--muted)}
+  .top-note b{color:var(--blue);font-weight:600}
+  nav.main{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding:2px 0 10px}
+  nav.main button{border:0;background:transparent;font-size:.83rem;font-weight:600;letter-spacing:.04em;padding:8px 12px;color:var(--ink);border-bottom:2.5px solid transparent;text-transform:uppercase}
+  nav.main button:hover{color:var(--blue)}
+  nav.main button.active{color:var(--blue);border-bottom-color:var(--blue)}
+  .menu-btn{display:none;border:1.5px solid var(--line);background:var(--bg);border-radius:10px;width:44px;height:44px;place-items:center;color:var(--ink)}
+
+  /* ---------- Hero ---------- */
+  .hero{background:var(--hero-bg);color:#fff;overflow:hidden;position:relative}
+  .hero-inner{display:grid;grid-template-columns:1.25fr .75fr;min-height:430px}
+  .hero-copy{position:relative;display:flex;flex-direction:column;justify-content:center;padding:56px 8px 64px 0;z-index:2}
+  .hero-word{position:absolute;inset:auto 0 -14px -6px;font-size:clamp(4.2rem,11.5vw,10.5rem);font-weight:800;letter-spacing:.02em;line-height:1;color:transparent;-webkit-text-stroke:2px rgba(43,156,227,.38);user-select:none;pointer-events:none;white-space:nowrap;z-index:0}
+  .hero-copy>*:not(.hero-word){position:relative;z-index:2}
+  .hero-kicker{color:#57b6f2;font-weight:600;letter-spacing:.22em;font-size:.75rem;text-transform:uppercase;margin:0 0 14px}
+  .hero h1{font-size:clamp(1.9rem,4vw,3.1rem);line-height:1.12;margin:0 0 16px;font-weight:700;max-width:15em}
+  .hero p.lead{color:#c3d3e2;margin:0 0 28px;max-width:34em;font-size:.98rem;line-height:1.65}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:8px;padding:12px 22px;font-weight:600;font-size:.9rem;border:1.5px solid transparent;min-height:44px}
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{background:var(--blue-dark)}
+  .btn-ghost{border-color:rgba(255,255,255,.45);color:#fff;background:transparent}
+  .btn-ghost:hover{border-color:#fff}
+  .hero-dots{display:flex;gap:8px;margin-top:34px}
+  .hero-dots span{width:11px;height:11px;border-radius:50%;border:2px solid rgba(255,255,255,.75);display:block}
+  .hero-dots span.on{background:#fff}
+  .hero-img{position:relative;min-height:300px}
+  .hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--hero-bg) 0%,transparent 26%)}
+
+  /* ---------- Sections ---------- */
+  section.block{padding:58px 0 8px}
+  .sec-head{text-align:center;margin-bottom:30px}
+  .sec-head h2{font-size:clamp(1.6rem,3vw,2.2rem);margin:0 0 6px;font-weight:700}
+  .sec-head p{color:var(--muted);margin:0;font-size:.92rem}
+  .viewall{display:inline-block;margin-top:16px;border:1.5px solid var(--blue);color:var(--blue);font-weight:600;font-size:.8rem;letter-spacing:.08em;padding:10px 26px;border-radius:4px;background:transparent;text-transform:uppercase}
+  .viewall:hover{background:var(--blue);color:#fff}
+
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .cat-card{border:0;background:transparent;padding:0;text-align:center}
+  .cat-card .ph{aspect-ratio:1/1;overflow:hidden;border-radius:6px;background:var(--bg-soft)}
+  .cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+  .cat-card:hover img{transform:scale(1.05)}
+  .cat-card h3{font-size:.95rem;font-weight:500;letter-spacing:.05em;margin:14px 0 2px;text-transform:uppercase}
+  .cat-card small{color:var(--muted);font-size:.78rem}
+
+  .prod-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px 18px}
+  .prod{background:var(--card);border:0;padding:0;text-align:left;width:100%}
+  .prod .ph{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:6px;background:#fff;border:1px solid var(--line)}
+  .prod .ph img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+  .prod:hover .ph img{transform:scale(1.06)}
+  .off{position:absolute;top:10px;left:10px;background:var(--badge);color:#fff;font-size:.72rem;font-weight:600;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;z-index:2}
+  .tag-new{position:absolute;top:10px;right:10px;background:#10151b;color:#fff;font-size:.66rem;font-weight:600;letter-spacing:.06em;padding:4px 8px;border-radius:4px;z-index:2}
+  .prod h3{font-size:.86rem;font-weight:500;line-height:1.45;margin:12px 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.5em}
+  .prod .cat{color:var(--muted);font-size:.76rem;margin:0 0 4px}
+  .prod .price{color:var(--price);font-weight:600;font-size:.92rem;margin:0}
+  .prod .price s{color:var(--muted);font-weight:400;font-size:.82rem;margin-right:6px}
+  .prod .price .ref{color:var(--muted);font-weight:400;font-size:.7rem;margin-left:6px}
+
+  /* ---------- Catalog ---------- */
+  .catalog-tools{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:8px}
+  .chip{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:9px 18px;font-size:.83rem;font-weight:500;min-height:40px}
+  .chip:hover{border-color:var(--blue);color:var(--blue)}
+  .chip.active{background:var(--blue);border-color:var(--blue);color:#fff}
+  .result-line{text-align:center;color:var(--muted);font-size:.85rem;margin:14px 0 22px}
+  .empty{display:none;text-align:center;color:var(--muted);padding:36px 0 8px}
+
+  /* ---------- Feature strip ---------- */
+  .features{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:44px 0 6px}
+  .feature{border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;background:var(--card)}
+  .feature svg{color:var(--blue);margin-bottom:10px}
+  .feature h3{margin:0 0 6px;font-size:.98rem}
+  .feature p{margin:0;color:var(--muted);font-size:.85rem;line-height:1.6}
+
+  /* ---------- Footer ---------- */
+  footer.site{margin-top:64px;border-top:1px solid var(--line);background:var(--bg-soft)}
+  .foot{display:grid;grid-template-columns:1.3fr .85fr .85fr 1.25fr;gap:28px;padding:40px 0 26px}
+  .foot h4{margin:0 0 12px;font-size:.9rem;letter-spacing:.05em;text-transform:uppercase}
+  .foot p,.foot li{color:var(--muted);font-size:.86rem;line-height:1.7}
+  .foot ul{list-style:none;margin:0;padding:0}
+  .foot li button{border:0;background:none;padding:4px 0;color:var(--muted);font-size:.86rem;min-height:32px}
+  .foot li button:hover{color:var(--blue)}
+  .foot .logo{margin:0 0 10px}
+  .contact-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .contact-list li{display:flex;gap:10px;align-items:flex-start;line-height:1.5}
+  .contact-list .cl-label{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);background:var(--blue-soft);border-radius:6px;padding:3px 7px;white-space:nowrap;margin-top:1px;min-width:76px;text-align:center}
+  .contact-list a{color:var(--muted);word-break:break-all}
+  .contact-list a:hover{color:var(--blue);text-decoration:underline}
+  .contact-list span.val{color:var(--muted);word-break:break-all}
+  .modal-contact{margin-top:16px;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .modal-contact h4{margin:0 0 10px;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}
+  .modal-contact .contact-list{gap:8px}
+  .modal-contact .contact-list a,.modal-contact .contact-list span.val{font-size:.88rem}
+  .copyright{border-top:1px solid var(--line);padding:16px 0 22px;color:var(--muted);font-size:.8rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ---------- Modal ---------- */
+  .modal-back{position:fixed;inset:0;background:rgba(8,17,27,.62);display:none;place-items:center;z-index:100;padding:18px}
+  .modal-back.open{display:grid}
+  .modal{background:var(--bg);border-radius:18px;max-width:880px;width:100%;max-height:92vh;overflow:auto;box-shadow:var(--shadow)}
+  .modal-grid{display:grid;grid-template-columns:1fr 1fr}
+  .modal-grid .mph{background:#fff}
+  .modal-grid .mph img{width:100%;height:100%;object-fit:cover;aspect-ratio:1/1}
+  .modal-body{padding:30px 30px 34px;position:relative}
+  .modal-body .cat{color:var(--blue);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:0 0 8px}
+  .modal-body h3{margin:0 34px 12px 0;font-size:1.3rem;line-height:1.35}
+  .modal-body .price{color:var(--price);font-size:1.25rem;font-weight:700;margin:0 0 16px}
+  .modal-body .price s{color:var(--muted);font-weight:400;font-size:.95rem;margin-right:8px}
+  .modal-body .price .ref{font-size:.75rem;color:var(--muted);font-weight:400}
+  .spec{border-top:1px solid var(--line);margin-top:6px}
+  .spec div{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.88rem}
+  .spec dt{color:var(--muted)} .spec dd{margin:0;font-weight:500;text-align:right}
+  .modal-body .desc{color:var(--muted);font-size:.9rem;line-height:1.7;margin:16px 0 0}
+  .show-note{margin-top:20px;background:var(--blue-soft);color:var(--blue-dark);border-radius:10px;padding:12px 14px;font-size:.83rem;line-height:1.6}
+  @media (prefers-color-scheme: dark){.show-note{color:#a9d3f5}}
+  .modal-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:1.05rem;line-height:1}
+
+  @media (max-width:1020px){
+    .prod-grid{grid-template-columns:repeat(3,1fr)}
+    .cat-grid{grid-template-columns:repeat(3,1fr)}
+    .features{grid-template-columns:repeat(2,1fr)}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:720px){
+    .topbar{flex-wrap:wrap}
+    .searchbox{order:3;flex:1 1 100%}
+    .top-note{display:none}
+    .logo{font-size:1.7rem;margin:0}
+    .menu-btn{display:grid;margin-left:auto}
+    nav.main{display:none;flex-direction:column;align-items:stretch;padding-bottom:14px}
+    nav.main.open{display:flex}
+    nav.main button{text-align:left;border-bottom:1px solid var(--line);padding:12px 6px}
+    nav.main button.active{border-bottom:1px solid var(--line)}
+    .hero-inner{grid-template-columns:1fr;min-height:0}
+    .hero-img{min-height:250px;order:-1}
+    .hero-img::after{background:linear-gradient(0deg,var(--hero-bg) 0%,transparent 30%)}
+    .hero-copy{padding:26px 0 52px}
+    .prod-grid{grid-template-columns:repeat(2,1fr);gap:20px 12px}
+    .cat-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+    .modal-grid{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr}
+    section.block{padding-top:42px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none!important;scroll-behavior:auto!important}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="topbar">
+      <form class="searchbox" id="searchForm" role="search">
+        <input id="searchInput" type="search" placeholder="Search for products" aria-label="搜索产品" />
+        <button type="submit" aria-label="搜索">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        </button>
+      </form>
+      <p class="logo" aria-label="NkCoils">Nk<span class="ring">C</span>oils</p>
+      <p class="top-note"><b>产品展示站</b> · 预制线圈 / 发热丝 / 雾化器</p>
+      <button class="menu-btn" id="menuBtn" aria-label="打开菜单" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+    <nav class="main" id="mainNav" aria-label="产品分类"></nav>
+  </div>
+</header>
+
+<!-- Hero：复刻原站 INNOVA 主视觉 -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="hero-word" aria-hidden="true">INNOVA</p>
+      <p class="hero-kicker">Rebuildable · Coils · Wire</p>
+      <h1 id="heroTitle">精工预制线圈与重建雾化硬件</h1>
+      <p class="lead" id="heroLead">Ni80 / Ni90 / SS316L / KA1 高纯度发热丝手工绕制，Alien、Fused Clapton、Framed Staple 全系列预制线圈，以及 Boro RBA、RTA 与 DIY 工具 —— 全部产品在此集中展示。</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#catalog">浏览全部产品</a>
+        <a class="btn btn-ghost" href="#categories">按分类看</a>
+      </div>
+      <div class="hero-dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="hero-img">
+      <img src="https://nkcoils.com/wp-content/uploads/2024/09/DIGUA-RTA.6-scaled.jpg" alt="不锈钢重建式雾化器特写" />
+    </div>
+  </div>
+</section>
+
+<!-- Shop by Categories -->
+<section class="block" id="categories">
+  <div class="wrap">
+    <div class="sec-head"><h2>Shop by Categories</h2><p>按分类浏览展示产品</p></div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- New Arrivals -->
+<section class="block" id="new">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>New Arrivals</h2><p>Brands Kits / Tanks / MODs</p>
+      <button class="viewall" data-goto-cat="all">View All</button>
+    </div>
+    <div class="prod-grid" id="newGrid"></div>
+  </div>
+</section>
+
+<!-- Best Sellers -->
+<section class="block" id="best">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Best Sellers</h2><p>Latest High Quality Rebuildable &amp; Tanks</p>
+      <button class="viewall" data-goto-cat="all">View All</button>
+    </div>
+    <div class="prod-grid" id="bestGrid"></div>
+  </div>
+</section>
+
+<!-- 工艺与材质 -->
+<section class="block" aria-label="工艺与材质">
+  <div class="wrap">
+    <div class="sec-head"><h2>工艺与材质</h2><p>展示产品共同的制作标准</p></div>
+    <div class="features">
+      <div class="feature">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.5 5.5l2.1 2.1M16.4 16.4l2.1 2.1M18.5 5.5l-2.1 2.1M7.6 16.4l-2.1 2.1"/></svg>
+        <h3>高纯度合金丝</h3><p>Ni80、Ni90、SS316L、KA1 与镍钛 Nitinol，表面洁净、发热均匀，干烧后呈现均匀色泽。</p>
+      </div>
+      <div class="feature">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 17c3-6 13-6 16 0M4 12c3-6 13-6 16 0M4 7c3-6 13-6 16 0"/></svg>
+        <h3>手工绕制工艺</h3><p>Alien、Fused Clapton、Framed Staple 等复杂花式绕法，绕距均匀，兼顾口感与烟雾量。</p>
+      </div>
+      <div class="feature">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
+        <h3>出厂清洗处理</h3><p>预制线圈系列经清洗工序去除油污，开盒即可安装使用，减少异味与杂味。</p>
+      </div>
+      <div class="feature">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2M7 12h4M7 16h7"/></svg>
+        <h3>完整规格标注</h3><p>每款产品标注材质、线规、内径与电阻值，方便按 RDA / RTA / RBA 设备匹配选型。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Best Accessories -->
+<section class="block" id="accessories-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Best Accessories</h2><p>棉花 · 滴嘴 · DIY 工具</p>
+      <button class="viewall" data-goto-cat="accessories">View All</button>
+    </div>
+    <div class="prod-grid" id="accGrid"></div>
+  </div>
+</section>
+
+<!-- 全部产品 / 目录 -->
+<section class="block" id="catalog">
+  <div class="wrap">
+    <div class="sec-head"><h2>全部产品展示</h2><p>点击任意产品查看规格详情</p></div>
+    <div class="catalog-tools" id="chipRow" role="group" aria-label="分类筛选"></div>
+    <p class="result-line" id="resultLine"></p>
+    <div class="prod-grid" id="catalogGrid"></div>
+    <p class="empty" id="emptyLine">没有找到匹配的产品，换个关键词试试。</p>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <p class="logo">Nk<span class="ring">C</span>oils</p>
+        <p>预制线圈、发热丝、金属丝、Boro 仓与 RBA、雾化器及 DIY 配件的产品展示站。页面价格为原站公开标价，仅供选型参考。</p>
+      </div>
+      <div>
+        <h4>Categories</h4>
+        <ul id="footCats"></ul>
+      </div>
+      <div>
+        <h4>Showcase</h4>
+        <ul>
+          <li><button data-goto-cat="all">全部产品</button></li>
+          <li><button data-scroll="#new">New Arrivals</button></li>
+          <li><button data-scroll="#best">Best Sellers</button></li>
+          <li><button data-scroll="#accessories-sec">Best Accessories</button></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="contact-list">
+          <li><span class="cl-label">WhatsApp</span><a href="https://wa.me/8618811932632" target="_blank" rel="noopener">+86 18811932632</a></li>
+          <li><span class="cl-label">Email</span><a href="mailto:xb1069306425@qq.com">xb1069306425@qq.com</a></li>
+          <li><span class="cl-label">Telegram</span><span class="val">+86 18811932632</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© NkCoils 产品展示站</span>
+      <span>本页面为产品展示用途</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 产品详情弹窗 -->
+<div class="modal-back" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="modalName">
+  <div class="modal">
+    <div class="modal-grid">
+      <div class="mph"><img id="modalImg" src="https://nkcoils.com/wp-content/uploads/2024/09/DIGUA-RTA.6-scaled.jpg" alt="产品图" /></div>
+      <div class="modal-body">
+        <button class="modal-close" id="modalClose" aria-label="关闭">✕</button>
+        <p class="cat" id="modalCat"></p>
+        <h3 id="modalName"></h3>
+        <p class="price" id="modalPrice"></p>
+        <dl class="spec" id="modalSpec"></dl>
+        <p class="desc" id="modalDesc"></p>
+        <div class="modal-contact">
+          <h4>Contact / 联系方式</h4>
+          <ul class="contact-list">
+            <li><span class="cl-label">WhatsApp</span><a href="https://wa.me/8618811932632" target="_blank" rel="noopener">+86 18811932632</a></li>
+            <li><span class="cl-label">Email</span><a href="mailto:xb1069306425@qq.com">xb1069306425@qq.com</a></li>
+            <li><span class="cl-label">Telegram</span><span class="val">+86 18811932632</span></li>
+          </ul>
+        </div>
+        <p class="show-note">展示说明：本页为产品展示站，该产品仅展示外观与规格信息，咨询请通过上方联系方式联系。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var CATEGORIES = [
+  {id:"all",        label:"HOME",            cn:"全部产品"},
+  {id:"prebuilt",   label:"PREBUILT COILS",  cn:"预制线圈", img:"https://nkcoils.com/wp-content/uploads/2024/09/IMG_0946-7-scaled.jpg", note:"Alien · Fused Clapton · 手工花式线圈"},
+  {id:"wire",       label:"WIRE",            cn:"发热丝",   img:"https://nkcoils.com/wp-content/uploads/2024/09/900x1200-%E7%99%BD%E5%BA%95.0-scaled.jpg",     note:"Clapton / Ribbon / Round 成品丝"},
+  {id:"mods",       label:"MODS",            cn:"主机",     img:"https://nkcoils.com/wp-content/uploads/2024/09/MECHLYFE-Paramour-SBS-80W-21700-TC-MOD_0074557800e7.jpg",     note:"SBS / DNA 芯片主机"},
+  {id:"boro",       label:"BORO TANKS & RBA",cn:"Boro 仓与 RBA", img:"https://nkcoils.com/wp-content/uploads/2024/09/Astro-6.jpg", note:"Billet Box 兼容 RBA 桥与仓门"},
+  {id:"atomizers",  label:"ATOMIZERS",       cn:"雾化器",   img:"https://nkcoils.com/wp-content/uploads/2024/09/DIGUA-RTA.6-scaled.jpg", note:"RTA / RDA 重建式雾化器"},
+  {id:"metal",      label:"METAL WIRE",      cn:"金属丝",   img:"https://nkcoils.com/wp-content/uploads/2026/11/Nitinol-spool-wire.jpg",    note:"Nitinol 镍钛等特种金属丝"},
+  {id:"accessories",label:"ACCESSORIES",     cn:"配件",     img:"https://nkcoils.com/wp-content/uploads/2024/09/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240920110349-scaled.jpg", note:"棉花 · 滴嘴 · DIY 工具"}
+];
+var CATNAME = {}; CATEGORIES.forEach(function(c){ CATNAME[c.id]=c.label; });
+
+var PRODUCTS = [
+ {id:1, name:"10 Feet NK Fused Clapton Coil Wire Ni80, High Purity Nichrome 80 Vape Wire With Clean Surface", short:"10 Feet NK Fused Clapton 线圈丝 Ni80", cat:"wire", sub:"Clapton Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/Ni80-Fused-Clapton-Wire-28-Gauge-430x430.jpg", price:"$8.06 – $14.22", old:"", off:"-20%", isNew:true, best:true, acc:true,
+  specs:[["材质","Ni80 镍铬合金"],["结构","Fused Clapton"],["长度","10 Feet"],["适用","MTL RTA / DL RDA / RDTA"]], desc:"高纯度 Nichrome 80 发热丝，表面洁净、口感纯净，Fused Clapton 绕法兼顾发热速度与烟雾量。"},
+ {id:2, name:"10 PCS 0.3 ohm Phatom DIY Coil Stainless Steel 316L Inner Diameter 3.5mm", short:"10 PCS 0.3Ω Phatom DIY 线圈 SS316L", cat:"prebuilt", sub:"Prebuilt Coils", img:"https://nkcoils.com/wp-content/uploads/2024/09/10-PCS-0-3-ohm-Phatom-DIY-Coil-Stainless-Steel-316L-Inner-Diameter-3-5mm.jpg_-430x430.webp", price:"$5.10", old:"$6.37", off:"-20%", isNew:true, best:true, acc:true,
+  specs:[["材质","SS316L 不锈钢"],["电阻","0.3 Ω"],["内径","3.5 mm"],["数量","10 pcs"]], desc:"316L 不锈钢预制线圈，支持功率与温控模式，内径 3.5mm 适配主流重建雾化器。"},
+ {id:3, name:"10 Pcs Ni80 Alien Coil Vape Zeus X RTA RDA RDTA Prebuilt Coil Turn Blue After Dry Heating", short:"10 Pcs Ni80 Alien 线圈 · 干烧变蓝", cat:"prebuilt", sub:"Prebuilt Coils", img:"https://nkcoils.com/wp-content/uploads/2024/11/H847782896fa24123a4f5ba56b9226a76b-1-430x430.jpg", price:"$8.50 – $44.40", old:"", off:"-11%", isNew:true, best:true, acc:true,
+  specs:[["材质","Ni80"],["结构","Alien 三芯"],["适用","Zeus X RTA / RDA / RDTA"],["特性","干烧后变蓝"]], desc:"经典 Alien 波浪纹外绕，导油快、口感层次丰富，干烧后呈现标志性蓝色氧化色。"},
+ {id:4, name:"2 Meters Superelastic Nitinol Straight Wire, Black Oxide Nickel Titanium Alloy Wire 0.1mm – 5.0mm", short:"2 米超弹性 Nitinol 直丝 · 黑色氧化镍钛合金", cat:"metal", sub:"Metal Wire", img:"https://nkcoils.com/wp-content/uploads/2026/11/Nitinol-wire-430x430.jpg", price:"$2.99 – $70.68", old:"", off:"", isNew:true, best:true, acc:true,
+  specs:[["材质","Nitinol 镍钛合金"],["表面","黑色氧化"],["线径","0.1 – 5.0 mm"],["长度","2 Meters"]], desc:"超弹性镍钛合金直丝，黑色氧化表面，规格覆盖 0.1mm 至 5.0mm，适用于 DIY 与工业用途。"},
+ {id:5, name:"2.5 / 3.0mm Vape Cotton MTL Natural Organic Tasteless Fast Wick 2m/Bag", short:"2.5 / 3.0mm MTL 有机棉 · 2m/袋", cat:"accessories", sub:"Cotton Wicks", img:"https://nkcoils.com/wp-content/uploads/2024/11/Hf5e9f4da2f2e457bbd3155656d2f443eE-430x430.jpg", price:"$1.59", old:"$2.59", off:"-39%", isNew:true, best:true, acc:true,
+  specs:[["规格","2.5 / 3.0 mm"],["材质","天然有机棉"],["长度","2 m / 袋"],["特性","无味 · 导油快"]], desc:"为 MTL 线圈预成型的棉条，天然有机、无异味，导油速度快，换棉更省事。"},
+ {id:6, name:"2Pcs Handmade Ni80 Premade Fused Ribbon Alien Clapton Coils Framed Staggered Coils Good Flavor", short:"2Pcs 手工 Ni80 Fused Ribbon Alien 线圈", cat:"prebuilt", sub:"Prebuilt Coils", img:"https://nkcoils.com/wp-content/uploads/2024/11/HTB1yrkzalGE3KVjSZFhq6AkaFXaf-430x430.jpg", price:"$3.50 – $7.50", old:"", off:"-22%", isNew:true, best:false, acc:false,
+  specs:[["材质","Ni80"],["工艺","手工绕制"],["结构","Fused Ribbon Alien / Framed Staggered"],["数量","2 pcs"]], desc:"手工绕制的高阶花式线圈，扁丝 Alien 与 Framed Staggered 结构带来浓郁口感。"},
+ {id:7, name:"50 pcs Cleaned Rebuild Coils Premade NK A1 Ni80 Ni70 AWG Gauge 20 22 24 26 28 30 For RDA RTA RBA", short:"50 pcs 清洗款预制线圈 NK A1 / Ni80 / Ni70", cat:"prebuilt", sub:"50 pcs Pack", img:"https://nkcoils.com/wp-content/uploads/2024/11/Hd4c3f186a0874583b96450b3b7beedcd3-430x430.jpg", price:"$2.78 – $4.23", old:"", off:"-26%", isNew:true, best:false, acc:true,
+  specs:[["材质","A1 / Ni80 / Ni70"],["线规","AWG 20 – 30 可选"],["数量","50 pcs"],["处理","出厂清洗"]], desc:"经清洗处理的量贩预制线圈，多材质多线规可选，适合 RDA / RTA / RBA 日常重建。"},
+ {id:8, name:"50 x Alien Coils Ni80 0.22 Ohm", short:"50 x Alien 线圈 Ni80 0.22Ω", cat:"prebuilt", sub:"Prebuilt Coils", img:"https://nkcoils.com/wp-content/uploads/2024/09/S626aed23f0374595939d72f7f562e2cfe-430x430.jpg", price:"$23.07", old:"$35.38", off:"-35%", isNew:true, best:false, acc:true,
+  specs:[["材质","Ni80"],["结构","Alien"],["电阻","0.22 Ω"],["数量","50 pcs"]], desc:"50 只装 Alien 线圈，电阻一致性好，适合高频换线玩家与工作室批量使用。"},
+ {id:9, name:"50 x Big Coils ID 3.5 mm Fused Clapton Ni80 0.70 Ohm", short:"50 x 大线圈 ID 3.5mm Fused Clapton Ni80", cat:"prebuilt", sub:"Prebuilt Coils", img:"https://nkcoils.com/wp-content/uploads/2024/09/50-x-Big-Coils-ID-3-5-mm-Fused-Clapton-Ni80-0-70-Ohm.jpg_-430x430.webp", price:"$24.06", old:"", off:"", isNew:true, best:false, acc:false,
+  specs:[["材质","Ni80"],["结构","Fused Clapton"],["内径","3.5 mm"],["电阻","0.70 Ω"]], desc:"大内径 Fused Clapton 线圈，储油空间充足，适配大进气 RDA 与大功率设备。"},
+ {id:10, name:"521 TAB Mini Coil Burning Measure Building Platform 18650 Battery Ohm Meter Resistance Test Tools", short:"521 TAB Mini 烧丝台 · 电阻测试仪", cat:"accessories", sub:"DIY Tools", img:"https://nkcoils.com/wp-content/uploads/2024/11/S70465523db9e4dd582a13f58777771caH-1-430x430.jpg", price:"$12.50", old:"$13.50", off:"-7%", isNew:true, best:false, acc:true,
+  specs:[["功能","烧丝 / 电阻测量"],["供电","18650 电池"],["显示","LED 数显"],["用途","DIY 做丝平台"]], desc:"集烧丝与电阻测量于一体的迷你平台，做丝、调试、检测一台完成。"},
+ {id:11, name:"8PCS NK Premium SS316L Alien / Clapton / Fused Clapton Stainless Steel Coils For MTL RTA RBA RDA", short:"8PCS NK Premium SS316L 线圈套装", cat:"prebuilt", sub:"8 pcs Pack", img:"https://nkcoils.com/wp-content/uploads/2024/11/U17347e160c2f48ae88595a5fba60c1406-430x430.jpg", price:"$3.30 – $6.59", old:"", off:"-23%", isNew:false, best:true, acc:false,
+  specs:[["材质","SS316L"],["结构","Alien / Clapton / Fused Clapton 可选"],["数量","8 pcs"],["适用","MTL RTA / RBA / RDA"]], desc:"Premium 系列 316L 不锈钢线圈，发热快、还原度高，多种花式结构可选。"},
+ {id:12, name:"A1 Ribbon Wire 0.3×0.8mm For DIY Coils 100Ft Per Spool", short:"A1 扁丝 0.3×0.8mm · 100Ft/卷", cat:"wire", sub:"Ribbon Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H9f08440875a343b5aa4904241bb4274fR-430x430.jpg", price:"$3.80 – $6.20", old:"", off:"-21%", isNew:false, best:true, acc:false,
+  specs:[["材质","Kanthal A1"],["规格","0.3 × 0.8 mm"],["长度","100 Ft / 卷"],["用途","DIY 花式线圈"]], desc:"DIY 花式线圈常用的 A1 扁丝，0.3×0.8mm 规格，适合绕制 Alien 与 Staple 结构。"},
+ {id:13, name:"Bastard V2 RTA SXK Style Rebuildable Atomizer 3.5ml, 22mm, Air Pins 1, 1.2, 1.5, 2, 2.5, 3mm", short:"Bastard V2 RTA · SXK 风格 22mm", cat:"atomizers", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2025/07/02-430x430.png", price:"$24.40", old:"$25.90", off:"-6%", isNew:false, best:true, acc:false,
+  specs:[["直径","22 mm"],["容量","3.5 ml"],["进气针","1 / 1.2 / 1.5 / 2 / 2.5 / 3 mm"],["类型","MTL RTA"]], desc:"主打 MTL 口感的重建式雾化器，附多规格进气针，可从紧致到顺滑自由调节。"},
+ {id:14, name:"Cloned UNKWN RBA Bridge With Airflow Pins 1.2+1.5+2.5+3.0+3.5+4.0 for Billet BB Boro Mod", short:"UNKWN RBA 桥 · Boro 兼容", cat:"boro", sub:"BoRo Tanks & RBA", img:"https://nkcoils.com/wp-content/uploads/2024/11/S4443d735decd40908bb59996f478c74bi-430x430.jpg", price:"$16.99 – $17.99", old:"", off:"-29%", isNew:false, best:true, acc:false,
+  specs:[["兼容","Billet Box / Boro 主机"],["进气针","1.2 / 1.5 / 2.5 / 3.0 / 3.5 / 4.0"],["类型","RBA Bridge"],["数量","含多规格气针"]], desc:"为 Boro 设备设计的 RBA 桥，六档进气针覆盖 MTL 到 RDL 的抽吸区间。"},
+ {id:15, name:"Cotton Tread Pre-measured Wicks For 3mm Coils", short:"预裁棉条 · 适配 3mm 线圈", cat:"accessories", sub:"Cotton Wicks", img:"https://nkcoils.com/wp-content/uploads/2024/11/S26afaed6f53243dfa269056f33f5d0fa0-430x430.jpg", price:"$2.00 – $7.50", old:"", off:"-33%", isNew:false, best:true, acc:false,
+  specs:[["规格","适配 3 mm 线圈"],["形式","预裁棉条"],["材质","有机棉"],["特性","免量取 · 快速穿棉"]], desc:"按 3mm 线圈预先裁好的棉条，带穿线端设计，穿棉一步到位。"},
+ {id:16, name:"DNA60C Replacement Screen, 2 Pcs OLED Display Panel", short:"DNA60C 替换屏幕 · 2 片 OLED", cat:"mods", sub:"DNA Chips", img:"https://nkcoils.com/wp-content/uploads/2026/09/DNA60C-Screen-4-430x430.jpg", price:"$15.00", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["芯片","DNA60C"],["类型","OLED 显示屏"],["数量","2 pcs"],["用途","主机维修替换"]], desc:"DNA60C 主机专用替换 OLED 屏幕，2 片装，适合维修与改装备用。"},
+ {id:17, name:"Dovpo BLOTTO MAX 28mm RTA Coil Single / Dual Fused Clapton Ni80 / SS316L Prebuilt Heating DIY Coil", short:"Dovpo BLOTTO MAX 28mm RTA 专用线圈", cat:"prebuilt", sub:"Prebuilt Coils", img:"https://nkcoils.com/wp-content/uploads/2024/11/U9e36abe66bf94377acb36d3832e87af8A-430x430.jpg", price:"$3.17 – $6.35", old:"", off:"-24%", isNew:false, best:false, acc:false,
+  specs:[["适配","BLOTTO MAX 28mm RTA"],["材质","Ni80 / SS316L"],["结构","Fused Clapton"],["用法","单 / 双发"]], desc:"为大直径 RTA 定制的预制线圈，单发双发皆可，匹配大烟雾需求。"},
+ {id:18, name:"Hussar MTL RBA Bridge STE SS316 For SXK BB / Billet Box Mod / Boro Tank With 8 Air Pins", short:"Hussar MTL RBA 桥 · SS316 · 8 档气针", cat:"boro", sub:"BoRo Tanks & RBA", img:"https://nkcoils.com/wp-content/uploads/2024/11/Se091adba746d4d40987a85f6c6211dafe-1-430x430.jpg", price:"$9.99", old:"", off:"-52%", isNew:false, best:false, acc:false,
+  specs:[["材质","SS316"],["兼容","SXK BB / Billet Box / Boro"],["进气针","2.0 – 4.5 mm 共 8 档"],["定位","MTL"]], desc:"316 不锈钢 MTL 向 RBA 桥，附 8 只进气针，进气调节细腻。"},
+ {id:19, name:"Kong-Fu Vape Cotton Organic Wicking Material Tasteless", short:"Kong-Fu 有机导油棉", cat:"accessories", sub:"Cotton Wicks", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sdf6fd462a8c6447da20496905c803c9f6-430x430.jpg", price:"$2.99", old:"$5.90", off:"-49%", isNew:false, best:false, acc:true,
+  specs:[["材质","长绒有机棉"],["特性","无味 · 耐烧"],["导油","快速"],["包装","铁盒装"]], desc:"长绒有机棉，导油快、耐烧蚀、无异味，是重建玩家的常用棉材。"},
+ {id:20, name:"Long 510 Drip Tip for MTL RTA", short:"长款 510 滴嘴 · MTL RTA 用", cat:"accessories", sub:"Drip Tips", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sc56e0a191e424a21b2d6a02f6db540ffL-430x430.jpg", price:"$1.99", old:"$2.45", off:"-19%", isNew:false, best:false, acc:true,
+  specs:[["接口","510"],["定位","MTL RTA"],["款式","多色可选"],["特点","加长聚气"]], desc:"加长型 510 滴嘴，聚气效果好，提升 MTL 设备的口感集中度。"},
+ {id:21, name:"Monarchy Door Limelight", short:"Monarchy Boro 仓门 · 多色", cat:"boro", sub:"BoRo Tanks & RBA", img:"https://nkcoils.com/wp-content/uploads/2024/09/Monarchy-Door-Limelight.jpg_-430x430.webp", price:"$9.90 – $14.43", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["类型","Boro 仓门 / 面板"],["款式","多色可选"],["兼容","Boro 设备"],["用途","外观改装"]], desc:"Boro 设备替换仓门，多种配色，为主机换个新外观。"},
+ {id:22, name:"MTL Coil Jig Ceramic Tweezer High Quality Cutter for Wire Coil DIY", short:"MTL 绕丝棒 · 陶瓷镊子 DIY 工具", cat:"accessories", sub:"DIY Tools", img:"https://nkcoils.com/wp-content/uploads/2024/11/S1a60ec700f9744928933b4727a43ab54H-430x430.jpg", price:"$0.32 – $3.97", old:"", off:"", isNew:false, best:false, acc:true,
+  specs:[["工具","绕丝棒 / 陶瓷镊子"],["用途","绕丝 · 调丝"],["材质","不锈钢 / 陶瓷"],["定位","MTL DIY"]], desc:"绕丝与调丝的基础工具组合，陶瓷镊子耐高温，通电状态下也可调整线圈。"},
+ {id:23, name:"Ni80 Ribbon Flat Wire For DIY Coils Vape Wire 30/100Ft Per Spool", short:"Ni80 扁丝 · 30/100Ft 每卷", cat:"wire", sub:"Ribbon Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/Hb07349ada8304b078864a3f218c4d7c7s-430x430.jpg", price:"$6.00 – $7.00", old:"", off:"-14%", isNew:false, best:false, acc:false,
+  specs:[["材质","Ni80"],["类型","Ribbon 扁丝"],["长度","30 / 100 Ft"],["用途","DIY 花式线圈"]], desc:"Ni80 扁丝，绕制 Staple、Framed Staple 等高阶花式的核心材料。"},
+ {id:24, name:"NK 100Ft KA1 Vape Coil Wire AWG 24ga 26ga 28ga 30ga 32ga Heating Resistance Wire", short:"NK 100Ft KA1 圆丝 · 多线规", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/S69c13db8014e469997b57b948f188612R-430x430.jpg", price:"$4.60 – $12.20", old:"", off:"-18%", isNew:false, best:false, acc:false,
+  specs:[["材质","Kanthal A1"],["线规","24 / 26 / 28 / 30 / 32 ga"],["长度","100 Ft"],["类型","Round Wire 圆丝"]], desc:"经典 KA1 圆丝，线规齐全，是素丝绕制与花式线圈打底的万用选择。"},
+ {id:25, name:"NK 100pcs Fused Clapton Prebuilt Coils 0.26 ohm for RTA RDA, 3 x 28 Gauge Ni90 with 38g Ni80", short:"NK 100pcs Fused Clapton 预制线圈 0.26Ω", cat:"prebuilt", sub:"Prebuilt Coils", img:"https://nkcoils.com/wp-content/uploads/2024/09/90802-1-430x430.jpg", price:"$23.99", old:"$28.99", off:"-17%", isNew:false, best:false, acc:false,
+  specs:[["结构","3×28ga Ni90 + 38g Ni80"],["电阻","0.26 Ω"],["数量","100 pcs"],["适用","RTA / RDA"]], desc:"100 只量贩装 Fused Clapton，Ni90 芯线发热迅猛，适合大烟雾双发配置。"},
+ {id:26, name:"NK 100pcs nichrome Ni80 parallel fused clapton coil 25*2/39G 0,26ohm prebuilt coil  for vape RDA", short:"NK 100pcs nichrome Ni80 parallel fused clapton coil 25*2/39G…", cat:"prebuilt", sub:"Prebuilt Coils", img:"https://nkcoils.com/wp-content/uploads/2024/11/H8f910f2060a144f18f2e6ed44669690e3-430x430.jpg", price:"$17.50 – $58.00", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","预制线圈"],["原站分类","Prebuilt Coils"],["Color","100pcs (1 box ) / 500pcs (5 box )"]], desc:"NK 100pcs nichrome Ni80 parallel fused clapton coil 25*2/39G 0,26ohm prebuilt coil  for vape RDA。"},
+ {id:27, name:"NK 10m/roll Ni90 Nichrome wire 90/10 Electronic Cigarette Heating Wire For RDA RTA RDTA Atomizer For DIY Prebuilt Coil vape wire", short:"NK 10m/roll Ni90 Nichrome wire 90/10 Electronic Cigarette…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/HTB1fr3CUxnaK1RjSZFBq6AW7VXaV-430x430.jpg", price:"$7.00 – $30.00", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","Ni90 20G 30Ft / Ni90 22G 30Ft / Ni90 23G"]], desc:"NK 10m/roll Ni90 Nichrome wire 90/10 Electronic Cigarette Heating Wire For RDA RTA RDTA Atomizer For DIY Prebuilt Coil vape wire。"},
+ {id:28, name:"NK 30Ft Spool Ni80 AWG 20 22 24 25 26 27 28 29 30 32 Gauge Vape Coils Wire For RDA RTA RBA Tank Heating Resistance Wire", short:"NK 30Ft Spool Ni80 AWG 20 22 24 25 26 27 28 29 30 32 Gauge…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sc929dbfcf5f6472b99c93223d367d94fY-430x430.jpg", price:"$4.43 – $9.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","Ni80 20Ga 30Ft / Ni80 22Ga 30Ft / Ni80 2"]], desc:"NK 30Ft Spool Ni80 AWG 20 22 24 25 26 27 28 29 30 32 Gauge Vape Coils Wire For RDA RTA RBA Tank Heating Resistance Wire。"},
+ {id:29, name:"NK Baby Alien Ni80 Ni90 Fused Clapton Staple Framed Juggernaut Tricore Dual Clapton Resistance Heating Wire", short:"NK Baby Alien Ni80 Ni90 Fused Clapton Staple Framed…", cat:"prebuilt", sub:"8 pcs Pack", img:"https://nkcoils.com/wp-content/uploads/2024/11/S20136b8d9dd842efb9aa717ca3e74fbbC-430x430.webp", price:"$2.86 – $25.01", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","预制线圈"],["原站分类","8 pcs Pack"],["Color","05. Ni80 28x3-40g / 28. Ni80 FC 303040 /"]], desc:"NK Baby Alien Ni80 Ni90 Fused Clapton Staple Framed Juggernaut Tricore Dual Clapton Resistance Heating Wire。"},
+ {id:30, name:"NK Clean Nichrome 70 Vape Wire Awg 24 26 27 28 29 30 Gauge Ni70 For Diy Coils", short:"NK Clean Nichrome 70 Vape Wire Awg 24 26 27 28 29 30 Gauge…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H1e5c77984bbf46cb8633ba3ab871406fI-430x430.jpg", price:"$5.60", old:"$6.60", off:"-15%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","Ni70 24g 30ft / Ni70 26g 30ft / Ni70 27g"]], desc:"NK Clean Nichrome 70 Vape Wire Awg 24 26 27 28 29 30 Gauge Ni70 For Diy Coils。"},
+ {id:31, name:"NK DL Prebuilt Coil Ni80 Alien Triple Fused Clapton Flat Staggered Premade Wire Rebuildable Tank RTA RDA Zeus X DIY Vape Coils", short:"NK DL Prebuilt Coil Ni80 Alien Triple Fused Clapton Flat…", cat:"prebuilt", sub:"8 pcs Pack", img:"https://nkcoils.com/wp-content/uploads/2024/11/S70b266e29bb641dfa614f0d8bd17adb1V-430x430.jpg", price:"$3.57 – $22.86", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","预制线圈"],["原站分类","8 pcs Pack"],["Color","1. Ni80 28x2-40 8Pcs / 2. Ni80 26x2-38 8"]], desc:"NK DL Prebuilt Coil Ni80 Alien Triple Fused Clapton Flat Staggered Premade Wire Rebuildable Tank RTA RDA Zeus X DIY Vape Coils。"},
+ {id:32, name:"NK Hand Made Alien Coil Ni80 26×3+38ga 0.2Ω 10Pcs / Box", short:"NK Hand Made Alien Coil Ni80 26×3+38ga 0.2Ω 10Pcs / Box", cat:"prebuilt", sub:"Prebuilt Coils", img:"https://nkcoils.com/wp-content/uploads/2025/12/1-2-430x430.jpg", price:"$28.99", old:"$31.99", off:"-9%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","预制线圈"],["原站分类","Prebuilt Coils"]], desc:"NK-Pack of 10/100Pcs Nichrome 80 Hand Made Alien 0.22Ohm 26×3+38Ga Tight Wrapped Heating Coils *Material: NK Nichrome 80 Wire…"},
+ {id:33, name:"NK Hand Made Alien Coil Ni80 27×3+38ga 0.26 Ω， 8 pcs / box", short:"NK Hand Made Alien Coil Ni80 27×3+38ga 0.26 Ω， 8 pcs / box", cat:"prebuilt", sub:"8 pcs Pack", img:"https://nkcoils.com/wp-content/uploads/2025/12/4-430x430.jpg", price:"$22.99", old:"$24.99", off:"-8%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","预制线圈"],["原站分类","8 pcs Pack"]], desc:"Core: 3 x 27g Ni80 Fuse: 38g Ni80 5 wraps with a 3mm inner diameter CoilWidth: 8.0mm Resistance: Single Coil ~0.26 ohm / Dual…"},
+ {id:34, name:"NK High Temp. Kanthal A1 Vape Coil Wire, Clean Surface, Long Service Life, AWG 20 22 24 26 27 28 29 30 32 34 36 38 40 44 Gauge", short:"NK High Temp. Kanthal A1 Vape Coil Wire, Clean Surface, Long…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/S2576cee8fdef4e558698f2439fe5aa40p-430x430.jpg", price:"$3.10 – $12.25", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","A1 20G 30Ft / A1 22G 30Ft / A1 24G 30Ft "]], desc:"The A1 Wire was made by high purity FeCrAl alloy with clean surface and long service life. We can supply it in different…"},
+ {id:35, name:"NK MTL Ni80 Alien Dual Core DL Fused Clapton Build Vape RTA Coils 8 PCS/Box", short:"NK MTL Ni80 Alien Dual Core DL Fused Clapton Build Vape RTA…", cat:"prebuilt", sub:"8 pcs Pack", img:"https://nkcoils.com/wp-content/uploads/2024/11/S34318c16f96944dd970a49434d820e67N-430x430.jpg", price:"$2.71 – $6.43", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","预制线圈"],["原站分类","8 pcs Pack"],["Color","20. Ni80 Juggernaut / 21. Mirror 27x3-40"]], desc:"NK MTL Ni80 Alien Dual Core DL Fused Clapton Build Vape RTA Coils 8 PCS/Box。"},
+ {id:36, name:"NK MTL Wire H-A1 28 Gauge 30Ft New High-Temperature FeCrAl Alloy Resistance Heating Wire For Rba Rta", short:"NK MTL Wire H-A1 28 Gauge 30Ft New High-Temperature FeCrAl…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H0282c6ff581f47d0931022c849f8bbe97-430x430.jpg", price:"$4.26 – $29.41", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","1x30ft Ha1 / 2x30ft Ha1 / 5x30ft Ha1 / 1"]], desc:"NK MTL Wire H-A1 28 Gauge 30Ft New High-Temperature FeCrAl Alloy Resistance Heating Wire For Rba Rta。"},
+ {id:37, name:"NK Ni200 vape wire temperaturer control wire AWG 26 gauge 28 gauge 30 gauge", short:"NK Ni200 vape wire temperaturer control wire AWG 26 gauge 28…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H45539397f95a42a5be310f4a52a193a0K-430x430.jpg", price:"$5.90", old:"$6.90", off:"-14%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","Ni200 26Ga 30ft / Ni200 28Ga 30ft / Ni20"]], desc:"NK Ni200 vape wire temperaturer control wire AWG 26 gauge 28 gauge 30 gauge。"},
+ {id:38, name:"NK Ni80 DIY Coils Clean Prebuilt Triple Fused Clapton Vape Wire Flat Ribbon Heating E-cig RTA RDTA RDA RBA MTL Pre-made Coils", short:"NK Ni80 DIY Coils Clean Prebuilt Triple Fused Clapton Vape…", cat:"prebuilt", sub:"8 pcs Pack", img:"https://nkcoils.com/wp-content/uploads/2024/11/H622808a469784db0af45f7e87111e712j-1-430x430.jpg", price:"$2.92 – $6.00", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","预制线圈"],["原站分类","8 pcs Pack"],["Color","20. Ni80 Juggernaut / 21. Mirror 27x3-40"]], desc:"NK Ni80 DIY Coils Clean Prebuilt Triple Fused Clapton Vape Wire Flat Ribbon Heating E-cig RTA RDTA RDA RBA MTL Pre-made Coils。"},
+ {id:39, name:"NK Ni80 Fused Clapton Dual Core Prebuilt Coils 26G*2+36G – 0.30 Ohm for Vape Tank Zeus x RTA Atomizer Solo RDA Fast Heating", short:"NK Ni80 Fused Clapton Dual Core Prebuilt Coils 26G*2+36G –…", cat:"prebuilt", sub:"100 pcs Pack", img:"https://nkcoils.com/wp-content/uploads/2024/11/U59107cf0437e4481ac09cc058ac34886F-430x430.jpg", price:"$3.85 – $25.00", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","预制线圈"],["原站分类","100 pcs Pack"],["Color","10 coils / 50 coils / 100 coils"]], desc:"NK Ni80 Fused Clapton Dual Core Prebuilt Coils 26G*2+36G – 0.30 Ohm for Vape Tank Zeus x RTA Atomizer Solo RDA Fast Heating。"},
+ {id:40, name:"NK Nichrome 80 Resistance Heating Wire 40 Gauge", short:"NK Nichrome 80 Resistance Heating Wire 40 Gauge", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2025/10/IMG_7914_%E4%BA%94%E9%87%91%E3%80%81%E5%A1%91%E6%96%99%E7%B2%BE%E4%BF%AEV2_20250318_133104_384_%E4%BF%AE%E5%9B%BE%E7%BB%93%E6%9E%9C_EBUOLJ-430x430.jpeg", price:"$9.99 – $10.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","Ni80 34ga 1000ft / Ni80 36ga 1000ft / Ni"]], desc:"Premium Ni80 by NK High Purity Smooth Surface Free of Oil, Stain Stable Resistance Bright Annealed Long Service Life"},
+ {id:41, name:"NK NiFe70 wire temperaturer control vape wire AWG 28 gauge 30 gauge", short:"NK NiFe70 wire temperaturer control vape wire AWG 28 gauge…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H3349db69176546efaa5996eb4a5d64301-430x430.jpg", price:"$5.90", old:"$6.90", off:"-14%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","NiFe70 28G 30Ft / NiFe70 30G 30Ft"]], desc:"NK NiFe70 wire temperaturer control vape wire AWG 28 gauge 30 gauge。"},
+ {id:42, name:"NK ss316l alien wire resistance vape prebuilt coil alien clapton ss 316l 0.3×0.8+32g 10ft/roll for ecig DIY premade", short:"NK ss316l alien wire resistance vape prebuilt coil alien…", cat:"wire", sub:"Clapton Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sa4ae441f66c44bb4b6d77c121926bb11E-430x430.jpg", price:"$3.50", old:"$4.50", off:"-22%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Clapton Wire"],["Color","0.3x0.8-32g 10ft"]], desc:"NK ss316l alien wire resistance vape prebuilt coil alien clapton ss 316l 0.3×0.8+32g 10ft/roll for ecig DIY premade。"},
+ {id:43, name:"NK ss316l triple fused clapton coil wire 26×3/38ga 10ft spool ss 316l parallel clapton wire for ecig vape prebuilt", short:"NK ss316l triple fused clapton coil wire 26×3/38ga 10ft…", cat:"wire", sub:"Clapton Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/H401fee792d3f4ade8116f1df749fe93eU-430x430.jpg", price:"$10.00", old:"$11.00", off:"-9%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Clapton Wire"],["Color","316l 28x3-38g 10ft"]], desc:"NK ss316l triple fused clapton coil wire 26×3/38ga 10ft spool ss 316l parallel clapton wire for ecig vape prebuilt。"},
+ {id:44, name:"NK Superfine Ni80 Fused Clapton MTL Rta Mico Coil Wire 10Feet Per Spool", short:"NK Superfine Ni80 Fused Clapton MTL Rta Mico Coil Wire…", cat:"wire", sub:"Clapton Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/S6a61dec6a2f745df8ab714aec78ca7d3z-430x430.jpg", price:"$9.08 – $13.69", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Clapton Wire"],["Color","Fused Clapton 334 / Twisted Fused 334 / "]], desc:"NK Superfine Ni80 Fused Clapton MTL Rta Mico Coil Wire 10Feet Per Spool。"},
+ {id:45, name:"NK titanium wire temperaturer control vape wire AWG 26 gauge 28 gauge 30 gauge", short:"NK titanium wire temperaturer control vape wire AWG 26 gauge…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/Heecf74757a7d4647a601228e5ad3811bw-430x430.jpg", price:"$5.90", old:"$6.90", off:"-14%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","Titanium 26Ga 30Ft / Titanium 28Ga 30Ft"]], desc:"NK titanium wire temperaturer control vape wire AWG 26 gauge 28 gauge 30 gauge。"},
+ {id:46, name:"NK-Stainless Steel SS316L AWG 20 22 24 26 28 30 32 34 36 38 40 42 Gauge Jewelry Making Food Cutting Atomizer E-cig Heating Wire", short:"NK-Stainless Steel SS316L AWG 20 22 24 26 28 30 32 34 36 38…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/Heb1435cb43c84171b555b47d9bee330aT-430x430.jpg", price:"$3.41 – $12.25", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","316L 20G 30Ft / 316L 22G 30Ft / 316L 24G"]], desc:"NK-Stainless Steel SS316L AWG 20 22 24 26 28 30 32 34 36 38 40 42 Gauge Jewelry Making Food Cutting Atomizer E-cig Heating Wire。"},
+ {id:47, name:"Original Ambition Mods Pima Cotton 2.5mm & 3mm 7m", short:"Original Ambition Mods Pima Cotton 2.5mm & 3mm 7m", cat:"accessories", sub:"Cotton Wicks", img:"https://nkcoils.com/wp-content/uploads/2024/11/S2a371c5521fc45acb2bf7b1ccc348107L-1-430x430.jpg", price:"$2.99", old:"$5.99", off:"-50%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","Cotton Wicks"],["Color","2.5mm / 3.0mm"]], desc:"Original Ambition Mods Pima Cotton 2.5mm & 3mm 7m。"},
+ {id:48, name:"Original Auguse Era S RTA V3 16mm Rebuildable Tank Atomizer", short:"Original Auguse Era S RTA V3 16mm Rebuildable Tank Atomizer", cat:"atomizers", sub:"Auguse", img:"https://nkcoils.com/wp-content/uploads/2024/11/A2be755d683d146a0aa2bee4e2f5d1c28w-430x430.jpg", price:"$23.99", old:"$32.99", off:"-27%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","Auguse"],["Color","Black / SS"],["直径","16mm"]], desc:"Original Auguse Era S RTA V3 16mm Rebuildable Tank Atomizer。"},
+ {id:49, name:"Original BP Mods Pro Vape Cotton Wick 2.5mm 3.0mm Thread", short:"Original BP Mods Pro Vape Cotton Wick 2.5mm 3.0mm Thread", cat:"accessories", sub:"Cotton Wicks", img:"https://nkcoils.com/wp-content/uploads/2024/11/U727ee2234f854f5aad2c4fc02d6e0200e-1-430x430.jpg", price:"$3.99", old:"$5.99", off:"-33%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","Cotton Wicks"],["Color","2.5mm 1pcs / 3.0mm 1pcs"]], desc:"Original BP Mods Pro Vape Cotton Wick 2.5mm 3.0mm Thread。"},
+ {id:50, name:"Original NK MTL Coil Bora Fused Clapton NI80 KA1 SS316L Clapton Prebuilt DIY For Single Coil Salt RTA", short:"Original NK MTL Coil Bora Fused Clapton NI80 KA1 SS316L…", cat:"prebuilt", sub:"8 pcs Pack", img:"https://nkcoils.com/wp-content/uploads/2024/11/H304d11bf98704ec896f88f53275df045g-430x430.jpg", price:"$3.00 – $6.50", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","预制线圈"],["原站分类","8 pcs Pack"],["Color","Ni80 30x38 1.46 ohm / Ni80 28x38 1.0 ohm"]], desc:"Original NK MTL Coil Bora Fused Clapton NI80 KA1 SS316L Clapton Prebuilt DIY For Single Coil Salt RTA。"},
+ {id:51, name:"Original NK Ni80 Ni70 KA1 AWG 24 26 27 28 29 30 Gauge MTL Coil Vape Wire 30 Feet Per Spool", short:"Original NK Ni80 Ni70 KA1 AWG 24 26 27 28 29 30 Gauge MTL…", cat:"wire", sub:"Round Wire", img:"https://nkcoils.com/wp-content/uploads/2024/11/S5408fb19942c4ab2aaa0fedc57f45c1dz-430x430.jpg", price:"$2.90 – $5.95", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","发热丝"],["原站分类","Round Wire"],["Color","A1 28G 30Ft / A1 29G 30Ft / Ni80 24Ga 30"]], desc:"Original NK Ni80 Ni70 KA1 AWG 24 26 27 28 29 30 Gauge MTL Coil Vape Wire 30 Feet Per Spool。"},
+ {id:52, name:"Original Steam Crave Meson RTA 25mm 5ml/6ml", short:"Original Steam Crave Meson RTA 25mm 5ml/6ml", cat:"atomizers", sub:"Atomizers", img:"https://nkcoils.com/wp-content/uploads/2024/11/Se842ac4b09964eb480c20ee8f3c234e1b-430x430.jpg", price:"$36.90 – $39.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","Atomizers"],["Color","SS / Black / Gunmetal"],["容量","5ml"]], desc:"Original Steam Crave Meson RTA 25mm 5ml/6ml。"},
+ {id:53, name:"Original Timesvape Dreamer Clutch Mech Mod 20700 21700 18650 Mechanical Tube Mod", short:"Original Timesvape Dreamer Clutch Mech Mod 20700 21700 18650…", cat:"mods", sub:"Mechanical Mods", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sc79ec960293b4e61a50db739ee3e863dp-430x430.jpg", price:"$66.99 – $75.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","Mechanical Mods"],["Color","Stainless steel / Brass / Matte Black / "]], desc:"Original Timesvape Dreamer Clutch Mech Mod 20700 21700 18650 Mechanical Tube Mod。"},
+ {id:54, name:"Original Yihi Pioneer4you IPV U710 Box Mod 80W", short:"Original Yihi Pioneer4you IPV U710 Box Mod 80W", cat:"mods", sub:"MTL Mods", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sf2f3c5270a094b599e97a748ee2cd4ael-430x430.jpg", price:"$36.99", old:"$49.80", off:"-26%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","MTL Mods"],["Color","Black / space block"]], desc:"Original Yihi Pioneer4you IPV U710 Box Mod 80W。"},
+ {id:55, name:"Original Yihi Pioneer4you iPV V200 Box Mod 200W", short:"Original Yihi Pioneer4you iPV V200 Box Mod 200W", cat:"mods", sub:"High Powder Mods", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sf965716f7ddc47c386252d1d218c51beL-430x430.jpg", price:"$46.99", old:"$58.99", off:"-20%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","High Powder Mods"],["Color","Woven blue / Aluminum black / Aluminum g"]], desc:"Original Yihi Pioneer4you iPV V200 Box Mod 200W。"},
+ {id:56, name:"Original Yihi SXmini Puremax Pod Kit Vape", short:"Original Yihi SXmini Puremax Pod Kit Vape", cat:"mods", sub:"Mods", img:"https://nkcoils.com/wp-content/uploads/2024/11/A04709dc15a8a4ef5a6cec396042c0432E-430x430.png", price:"$14.99 – $16.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","Mods"],["Color","Silver / Black / Quantum Gunmetal / Quan"]], desc:"Original Yihi SXmini Puremax Pod Kit Vape。"},
+ {id:57, name:"Rekavape 415 Stealth Rikimaru Titanium Dna60c SBS MOD", short:"Rekavape 415 Stealth Rikimaru Titanium Dna60c SBS MOD", cat:"mods", sub:"Mods", img:"https://nkcoils.com/wp-content/uploads/2026/06/Rekavape-415-SBS-Mod-1-430x430.jpg", price:"$179.99 – $195.00", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","Mods"],["Color","aluminum Black / Aluminum Blue / aluminu"]], desc:"Tube top height: 76.8 mm Deck height: 47.5 mm Width: 48 mm Atomizer place Width : 24 mm Comes with Type C-USB Deck and bottom…"},
+ {id:58, name:"Rekavape Long 415 Style 510 Drip Tip, MTL Mouthpiece with Heat Dissipation Base, Four One Five", short:"Rekavape Long 415 Style 510 Drip Tip, MTL Mouthpiece with…", cat:"accessories", sub:"Drip Tips", img:"https://nkcoils.com/wp-content/uploads/2026/06/415-drip-tip-1-430x430.jpg", price:"$4.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","Drip Tips"],["Color","Black / Peek / PEI / SS / Transparent / "]], desc:"This Rekavape Long 415 style 510 drip tip is a professional MTL mouthpiece built for comfortable daily vaping. It features an…"},
+ {id:59, name:"RekaVape Menelaus RTA MTL Rebuildable Tank Atomizer 22mm Diameter 4.0ml Capacity Single Coil 510 Thread", short:"RekaVape Menelaus RTA MTL Rebuildable Tank Atomizer 22mm…", cat:"atomizers", sub:"Reka Vape", img:"https://nkcoils.com/wp-content/uploads/2026/08/d2706bde04a730aec4142e9e74519091-430x430.jpg", price:"$32.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","Reka Vape"],["Color","SS-PEI / SS-PPSU"],["容量","4.0ml"]], desc:"RekaVape Menelaus Polish Style MTL RTA Rebuildable Tank Atomizer. 22mm diameter,4.0ml e-liquid capacity,single coil…"},
+ {id:60, name:"Rekavape NFGTA RTA Rebuildable Tank Atomizer Top Fill 3ml 5ml", short:"Rekavape NFGTA RTA Rebuildable Tank Atomizer Top Fill 3ml 5ml", cat:"atomizers", sub:"Reka Vape", img:"https://nkcoils.com/wp-content/uploads/2026/08/d15433c92ef498aea0b092499ae5b49c-430x430.jpg", price:"$29.99 – $31.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","Reka Vape"],["Color","3ml black / 3ml ss / 5ml black / 5ml ss"],["容量","3ml"]], desc:"Rekavape NFGTA RTA rebuildable tank atomizer, 22mm diameter, crafted from 316 stainless‑steel with brushed surface. Dual 3ml /…"},
+ {id:61, name:"Rekavape Paravozz Terminator Jet'Win GT V8.2.S.ML. Mini Advanced RDTA – Air Pin 1.0, 1.1, 1.2, 1.3, 1.4, 1.6mm", short:"Rekavape Paravozz Terminator Jet'Win GT V8.2.S.ML. Mini…", cat:"atomizers", sub:"Reka Vape", img:"https://nkcoils.com/wp-content/uploads/2025/10/1c02a8107babe6db7f327c9d6446e054-430x430.jpg", price:"$3.90 – $70.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","Reka Vape"],["Color","AFC Set SS / AFC Set Titanium / Glass Ta"],["直径","1.6mm"]], desc:"Rekavape Paravozz Terminator Jet'Win GT V8.2.S.ML. Mini Advanced RDTA – Air Pin 1.0, 1.1, 1.2, 1.3, 1.4, 1.6mm。"},
+ {id:62, name:"Rekavape Spico Pro MTL RTA Rebuildable Atomizer", short:"Rekavape Spico Pro MTL RTA Rebuildable Atomizer", cat:"atomizers", sub:"Reka Vape", img:"https://nkcoils.com/wp-content/uploads/2026/06/Spico-pro-rta-430x429.jpg", price:"$34.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","Reka Vape"]], desc:"Rekavape Spica Pro MTL RTA rebuildable atomizer complete kit with spare PC tank, CHAK tool, spare o-rings, 3-leaved & 5-leaved…"},
+ {id:63, name:"Style UNKWN V2 Drip Tip 510 for Billet Box Boro Tank", short:"Style UNKWN V2 Drip Tip 510 for Billet Box Boro Tank", cat:"accessories", sub:"Drip Tips", img:"https://nkcoils.com/wp-content/uploads/2024/11/S25286968af914ed2bd8448c891f708f1y-1-430x430.jpg", price:"$4.16", old:"$5.16", off:"-19%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","Drip Tips"],["Color","UNKWN V2 Black / UNKWN V2 Silver / UNKWN"]], desc:"Style UNKWN V2 Drip Tip 510 for Billet Box Boro Tank。"},
+ {id:64, name:"SXK 415RTA Virtuous MTL Vape Atomizer", short:"SXK 415RTA Virtuous MTL Vape Atomizer", cat:"atomizers", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2026/06/%E7%BB%84-1-430x430.png", price:"$2.90 – $24.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","SXK"],["Color","415 RTA / PEI Tube"]], desc:"415RTA Virtuous – New deck with cotton placement and precision feeding grooves – Auto-guided top-fill e-liquid Height: 39.5 mm…"},
+ {id:65, name:"SXK Clone Crown Minimal RBA SS 316 with 8 Airpins 1.0 1.2 1.5 1.8 2.0 2.5 3.0 3.5mm", short:"SXK Clone Crown Minimal RBA SS 316 with 8 Airpins 1.0 1.2…", cat:"boro", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2026/08/55-430x430.png", price:"$25.90 – $27.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","Boro 仓与 RBA"],["原站分类","SXK"],["Color","Black Pattern / Black-D / SS Pattern / S"],["直径","3.5mm"]], desc:"The Crown Minimal RBA (TC Mini) by SXK is a compact rebuildable atomizer bridge built for Boro / Billet Box / Pulse AIO…"},
+ {id:66, name:"SXK CUDA Mod 60W", short:"SXK CUDA Mod 60W", cat:"mods", sub:"Mods", img:"https://nkcoils.com/wp-content/uploads/2026/07/32-430x430.png", price:"$69.90 – $169.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","Mods"],["Color","Black Delrin DNA60C / Black Delrin Stand"]], desc:"SXK CUDA Mod 60W | NKCOILS Core Specs Dimensions: 75 × 40 × 24 mm Shell Material: Delrin / Carbon Fiber / PEEK Charging Port:…"},
+ {id:67, name:"SXK Ghost Ring RTA 22mm", short:"SXK Ghost Ring RTA 22mm", cat:"atomizers", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2026/09/SXK-Ghost-Ring-rta-430x430.png", price:"$1.90 – $34.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","SXK"],["Color","Ghost Ring rta / Glass Tube for Ghost Ri"],["直径","22mm"]], desc:"SXK Ghost Ring By SightPic High Precision Replacement Spare Part Good Sealing Performance For Compatible RTA Atomizer Repair…"},
+ {id:68, name:"SXK Kalibr 23.30 RTA by Kaser Mods", short:"SXK Kalibr 23.30 RTA by Kaser Mods", cat:"atomizers", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2026/06/04-430x430.png", price:"$6.90 – $36.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","SXK"],["Color","Black / PEI Tank / SS"]], desc:"Kalibr 23.30 RTA by Kaser Mods Single-coil RTA MTL / RDL oriented Diameter: 23 mm Height: 30 mm (without drip tip) Capacity: ≈…"},
+ {id:69, name:"SXK Lindy RTA Rebuildable Tank Vape Atomizer 316SS, 5ml, 22mm, MTL Vaping", short:"SXK Lindy RTA Rebuildable Tank Vape Atomizer 316SS, 5ml,…", cat:"atomizers", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2024/11/S85c9d55fa27848ffb49ecc3b786df31dl-1-430x430.png", price:"$23.99", old:"$34.50", off:"-30%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","SXK"],["Color","Tank Tube / Short Tank Tube / SS"],["容量","5ml"]], desc:"SXK Lindy RTA Rebuildable Tank Vape Atomizer 316SS, 5ml, 22mm, MTL Vaping。"},
+ {id:70, name:"SXK Monarchy OST Old School MTL RTA Rebuildable Tank Atomizer – Silver, Air Pins 22mm", short:"SXK Monarchy OST Old School MTL RTA Rebuildable Tank…", cat:"atomizers", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sdf4557bf0bf144b6975a8cd301e32725o-1-430x430.jpg", price:"$29.50", old:"$30.50", off:"-3%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","SXK"],["Color","Silver"],["直径","22mm"]], desc:"SXK Monarchy OST Old School MTL RTA Rebuildable Tank Atomizer – Silver, Air Pins 22mm。"},
+ {id:71, name:"SXK Old School R Mtl RTA 22mm with Airpins: 1/1.2/1.5/2.5/3/3.5mm", short:"SXK Old School R Mtl RTA 22mm with Airpins:…", cat:"atomizers", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2026/02/02-2-430x430.png", price:"$35.90", old:"$39.90", off:"-10%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","SXK"]], desc:"SXK OST R Mtl RTA Ss316+Peek Diameter: 22mm Height: 46mm Capacity: 4.5ml PCTG tube Peek top cap Airpins:…"},
+ {id:72, name:"SXK Orca Aio DNA 60W Boro Box Mod VW 1~60W, SEVO70W", short:"SXK Orca Aio DNA 60W Boro Box Mod VW 1~60W, SEVO70W", cat:"mods", sub:"Boro Mods", img:"https://nkcoils.com/wp-content/uploads/2024/11/Safb22619249244d1ad40aa9984417985d-430x430.png", price:"$69.50 – $145.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","Boro Mods"],["Color","Orca Aio SEVO70 / Orca DNA Black / Orca "]], desc:"SXK Orca Aio DNA 60W Boro Box Mod VW 1~60W, SEVO70W。"},
+ {id:73, name:"SXK Prime Minister RDL MTL RTA Top Fill Atomizer with 2 Tanks", short:"SXK Prime Minister RDL MTL RTA Top Fill Atomizer with 2 Tanks", cat:"atomizers", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2026/06/SXK-Prime-Minister-RTA-430x430.jpg", price:"$2.50 – $29.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","SXK"],["Color","Glass Tube / MTL Accessories / PEI Tank "]], desc:"SXK Prime Minister RTA RDL Specification: Material: SS316 Stainless Steel Size: 22mm × 42mm E-liquid Capacity: 5.2–5.7ml Top…"},
+ {id:74, name:"SXK Rafi R Atomizer Topfill RTA 22mm with Airpins 1.0/1.2/2.0//2.5/3.0/3.5/4.0", short:"SXK Rafi R Atomizer Topfill RTA 22mm with Airpins…", cat:"atomizers", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2026/02/01-1-430x430.png", price:"$31.90 – $33.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","SXK"],["Color","Black / SS"]], desc:"Rafi R by AB Mods Material: ss316 Diameter: 22 mm Capacity: 4 ml Filling: Top-fill Airflow: Adjustable Glass tank Airflow…"},
+ {id:75, name:"SXK Style Monarchy Mobb TC RBA for SXK BB/Billet box", short:"SXK Style Monarchy Mobb TC RBA for SXK BB/Billet box", cat:"boro", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2025/09/03-430x430.png", price:"$24.90", old:"$29.90", off:"-17%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","Boro 仓与 RBA"],["原站分类","SXK"]], desc:"SXK Monarchy Mobb TC Style RBA Bridge is made from 316 Stainless steel and is suitable for is suitable for Billet / BB / Boro…"},
+ {id:76, name:"SXK Thrill Mod By MMVapor SEVO70W / DNA60W By MMVapor 3D Print PA12+SS 316 Suitable for MTL Tank", short:"SXK Thrill Mod By MMVapor SEVO70W / DNA60W By MMVapor 3D…", cat:"mods", sub:"SXK", img:"https://nkcoils.com/wp-content/uploads/2026/02/06-430x430.png", price:"$67.90 – $118.90", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","SXK"],["Color","Thrill Mod DNA60 / Thrill Mod SEVO 70"]], desc:"Thrill Mod 510 threading connection SEVO 70 / DNA60 Chipset Battery:1 x 18650 battery (not included) Compatible with vape…"},
+ {id:77, name:"SXK VWM DopeR RBA Style bridge for Boro Mod – Silver", short:"SXK VWM DopeR RBA Style bridge for Boro Mod – Silver", cat:"boro", sub:"BoRo Tanks & RBA", img:"https://nkcoils.com/wp-content/uploads/2024/11/A4b6a0300a70e4dfaa21f8c38ffcc8496y-1-430x430.jpg", price:"$24.50", old:"$25.50", off:"-4%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","Boro 仓与 RBA"],["原站分类","BoRo Tanks & RBA"],["Color","Silver"]], desc:"SXK VWM DopeR RBA Style bridge for Boro Mod – Silver。"},
+ {id:78, name:"Ulton Baya MTL RTA Rebuildable Tank Atomizer, 316SS + PC, 4.2ml, Air Pin 1.2, 1.5, 1.8mm, 22mm Diameter", short:"Ulton Baya MTL RTA Rebuildable Tank Atomizer, 316SS + PC,…", cat:"atomizers", sub:"Ulton", img:"https://nkcoils.com/wp-content/uploads/2025/09/Baya1-430x430.jpg", price:"$29.99", old:"$31.99", off:"-6%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","Ulton"],["容量","4.2ml"],["直径","1.8mm"]], desc:"Ulton Baya MTL RTA Rebuildable Tank Atomizer, 316SS + PC, 4.2ml, Air Pin 1.2, 1.5, 1.8mm, 22mm Diameter。"},
+ {id:79, name:"Ulton Compress Air Spare Part for Fev4.5S+ Flash E Vapor Improve Taste", short:"Ulton Compress Air Spare Part for Fev4.5S+ Flash E Vapor…", cat:"accessories", sub:"Ulton", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sf63b6a406f1341988945f5a2556d2891L-1-430x430.jpg", price:"$4.99", old:"$9.00", off:"-45%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","Ulton"],["Color","Silver"]], desc:"Ulton Compress Air Spare Part for Fev4.5S+ Flash E Vapor Improve Taste。"},
+ {id:80, name:"ULTON Kuma RTA MTL Vape Atomizer 22mm 4.5ml with 11 Airpins 3 Chambers", short:"ULTON Kuma RTA MTL Vape Atomizer 22mm 4.5ml with 11 Airpins…", cat:"atomizers", sub:"Ulton", img:"https://nkcoils.com/wp-content/uploads/2026/02/1%E6%9C%AA%E6%A0%87%E9%A2%98-1-430x430.jpg", price:"$28.99", old:"$33.99", off:"-15%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","Ulton"],["容量","4.5ml"]], desc:"Ulton Kuma MTL RTA ​3* Different Chambers (45° – plain – stairs) ​2* Air pins 0,9mm (installed) 2* Air pins 0.8 mm ​2* Air…"},
+ {id:81, name:"ULTON Millennium V1.1  22mm MTL RTA Rebuildable Vape Atomizer", short:"ULTON Millennium V1.1  22mm MTL RTA Rebuildable Vape Atomizer", cat:"atomizers", sub:"Ulton", img:"https://nkcoils.com/wp-content/uploads/2024/11/S8f85ebee85c14a7890d9bed3c787c671q-430x430.jpg", price:"$29.90", old:"$30.90", off:"-3%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","Ulton"],["Color","Silver"],["直径","22mm"]], desc:"ULTON Millennium V1.1  22mm MTL RTA Rebuildable Vape Atomizer。"},
+ {id:82, name:"ULTON Millennium V1.1 RTA Glass", short:"ULTON Millennium V1.1 RTA Glass", cat:"accessories", sub:"Ulton", img:"https://nkcoils.com/wp-content/uploads/2024/11/S9d8d9b4e95d14b25b71b2cf9f540b470y-1-430x430.jpg", price:"$1.50", old:"$2.50", off:"-40%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","Ulton"],["Color","White"]], desc:"ULTON Millennium V1.1 RTA Glass。"},
+ {id:83, name:"ULTON UTIP2 SS316 2-in-1 510 MTL DTL Drip Tip – Silver", short:"ULTON UTIP2 SS316 2-in-1 510 MTL DTL Drip Tip – Silver", cat:"accessories", sub:"Drip Tips", img:"https://nkcoils.com/wp-content/uploads/2024/11/A4daf9e75e1c8400d8c7c6f9167f9b14aE-1-430x430.jpg", price:"$3.50 – $9.00", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","Drip Tips"],["Color","UTIP2 1PC / UTIP2 3PC"]], desc:"ULTON UTIP2 SS316 2-in-1 510 MTL DTL Drip Tip – Silver。"},
+ {id:84, name:"Wholesale 500 PCS Ni90+Ni80 Premade RTA RDA Coils NNK 3 Cores Fused Clapton Nichrome Wire, ID3.0mm, 0.26 Ohm", short:"Wholesale 500 PCS Ni90+Ni80 Premade RTA RDA Coils NNK 3…", cat:"prebuilt", sub:"Prebuilt Coils", img:"https://nkcoils.com/wp-content/uploads/2026/05/90806-430x430.jpg", price:"$88.88", old:"$144.95", off:"-39%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","预制线圈"],["原站分类","Prebuilt Coils"],["直径","3.0mm"]], desc:"3 Cores Fused Clapton Prebuilt Coils Master Wire: 3 x 28 Gauge Nichrome 90 Outer Wire: 38 Gauge Nichrome Coil ID: 3.0mm Wraps:…"},
+ {id:85, name:"YFTK 2.0 3.5ML Metal Replacement Tank for Flash E Vapor 4.5S+", short:"YFTK 2.0 3.5ML Metal Replacement Tank for Flash E Vapor 4.5S+", cat:"accessories", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2024/11/S20f6e14cc8dc48c89b4321c2bad8a5b1t-1-430x430.jpg", price:"$11.50 – $14.80", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","YFTK"],["Color","2.0ml tank kit / 3.5ml tank kit / 2.0 ki"],["容量","3.5ML"]], desc:"YFTK 2.0 3.5ML Metal Replacement Tank for Flash E Vapor 4.5S+。"},
+ {id:86, name:"YFTK 415 RTA Virtuous Style MTL Atomizer, 22mm Diameter", short:"YFTK 415 RTA Virtuous Style MTL Atomizer, 22mm Diameter", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/02/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2026-01-08_152700_712-430x430.png", price:"$28.99", old:"$32.11", off:"-10%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"],["Color","Black / SS"],["直径","22mm"]], desc:"YFTK 415 RTA Virtuous Top Filling System Tank capacity: 3.3mL Material: 316 stainless steel Air plug pin: 0.8mm x 2 holes…"},
+ {id:87, name:"YFTK All in One Top Filling Tank Tube Replacement for FeV Flash-e-Vapor FEV V4.5/4.5S+ RTA – Silver", short:"YFTK All in One Top Filling Tank Tube Replacement for FeV…", cat:"accessories", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2024/11/Se880bfad3bf847f08b5cd7390509e8b9w-1-430x430.jpg", price:"$13.99", old:"$14.99", off:"-7%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","YFTK"],["Color","FEV V4.5 Tank 2.0ml / FEV V4.5 Tank 4.0m"]], desc:"YFTK All in One Top Filling Tank Tube Replacement for FeV Flash-e-Vapor FEV V4.5/4.5S+ RTA – Silver。"},
+ {id:88, name:"YFTK ATTO Mechanical MOD 22MM", short:"YFTK ATTO Mechanical MOD 22MM", cat:"mods", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/09/YFTK-ATTO-Mod-430x430.jpg", price:"$29.99", old:"$36.99", off:"-19%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","YFTK"],["直径","22MM"]], desc:"YFTK ATTO MOD 22MM Stainless Steel Tube Mod Support 18650 &18350 Battery Protection Chip Standard 510 Thread For 22mm Atomizer"},
+ {id:89, name:"YFTK Bamboo Knot Top Cap 4.8ML Tank Tube for Flash e vapor V4.5S+ RTA, V4.5 RTA", short:"YFTK Bamboo Knot Top Cap 4.8ML Tank Tube for Flash e vapor…", cat:"accessories", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sc35907f6b8684a619e4ca636243ab4b07-1-430x430.jpg", price:"$14.30 – $15.00", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","YFTK"],["Color","Silver / Black"],["容量","4.8ML"]], desc:"YFTK Bamboo Knot Top Cap 4.8ML Tank Tube for Flash e vapor V4.5S+ RTA, V4.5 RTA。"},
+ {id:90, name:"YFTK Beauty ring for Flash e-vapor V4.5, V4.5S+ RTA", short:"YFTK Beauty ring for Flash e-vapor V4.5, V4.5S+ RTA", cat:"accessories", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/03/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260326164344_2330_272-430x430.jpg", price:"$7.99", old:"$8.99", off:"-11%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","YFTK"]], desc:"YFTK Beauty ring for Flash e-vapor V4.5, V4.5S+ RTA。"},
+ {id:91, name:"YFTK Black Knight Mod for Bishop, Fev 4.5S+", short:"YFTK Black Knight Mod for Bishop, Fev 4.5S+", cat:"mods", sub:"MTL Mods", img:"https://nkcoils.com/wp-content/uploads/2025/11/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20251022174105_929_272-430x430.png", price:"$61.00 – $64.00", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","MTL Mods"],["Color","Knight Mod A / Knight Mod B"]], desc:"YFTK Black Knight Mod for Bishop, Fev 4.5S+。"},
+ {id:92, name:"YFTK Boro Tank for BB / Billet Box Mod", short:"YFTK Boro Tank for BB / Billet Box Mod", cat:"boro", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/07/YFTK-Boro-Tank-430x430.jpg", price:"$8.99", old:"$17.99", off:"-50%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","Boro 仓与 RBA"],["原站分类","YFTK"]], desc:"Leak-proof structure, easy filling & cleaning, fits all standard Boro RBA bridges"},
+ {id:93, name:"YFTK ByKa SE RTA", short:"YFTK ByKa SE RTA", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2025/11/40a5dec7f8368af9730d18d001af94a7-430x350.jpg", price:"$34.99", old:"$39.99", off:"-13%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"]], desc:"YFTK ByKa SE RTA。"},
+ {id:94, name:"YFTK Byka V7 RTA 23mm Full Kit", short:"YFTK Byka V7 RTA 23mm Full Kit", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2025/11/6bba795e764b21bb623cbf0de4cbb3bc-430x430.jpg", price:"$31.99", old:"$34.99", off:"-9%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"],["直径","23mm"]], desc:"YFTK Byka V7 RTA 23mm Full Kit。"},
+ {id:95, name:"YFTK Byka V8 RTA", short:"YFTK Byka V8 RTA", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2025/11/ff77a9a82387aabeeda12bdfa8ae714c-430x424.jpg", price:"$26.50 – $31.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"],["Color","Ka V8 Full Kit / Ka V8 Standard"]], desc:"YFTK Byka V8 RTA。"},
+ {id:96, name:"YFTK Byka V9 RTA", short:"YFTK Byka V9 RTA", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2025/11/8eac159504b7cb4eca07314bd2a28d64-430x462.jpg", price:"$7.99 – $35.00", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"],["Color","Ka V9 Full Kit / Ka V9 Standard / PEI Ta"]], desc:"YFTK Byka V9 RTA。"},
+ {id:97, name:"YFTK FEV Extreme Base kit for Flash e-vapor 4.5 V4.5S+ RTA", short:"YFTK FEV Extreme Base kit for Flash e-vapor 4.5 V4.5S+ RTA", cat:"accessories", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/02/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2026-01-22_173555_963-430x412.png", price:"$18.99", old:"$23.99", off:"-21%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","YFTK"]], desc:"YFTK FEV Extreme Base kit for Flash e-vapor 4.5 V4.5S+ RTA。"},
+ {id:98, name:"YFTK Fev Mini 17mm Single Coil MTL Rta 3.0ML Nicotine Salt Rebuildable Tank", short:"YFTK Fev Mini 17mm Single Coil MTL Rta 3.0ML Nicotine Salt…", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sf417bf187be34d7a8d08c638f3b2076dz-430x430.jpg", price:"$19.50 – $21.00", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"],["Color","Fev 17mm RTA / RTA and Coil"],["容量","3.0ML"]], desc:"YFTK Fev Mini 17mm Single Coil MTL Rta 3.0ML Nicotine Salt Rebuildable Tank。"},
+ {id:99, name:"YFTK FEV4.5S+ Accessories Airpins, Orings, Reducer, PC, PEI, Pineapple Replacement Tank", short:"YFTK FEV4.5S+ Accessories Airpins, Orings, Reducer, PC, PEI,…", cat:"accessories", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sd66c682433394390b9e139e9136d588aZ-430x430.jpg", price:"$2.00 – $9.70", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","YFTK"],["Color","2x1.0 Airpin / 2x0.8 Airpin / Oring and "]], desc:"YFTK FEV4.5S+ Accessories Airpins, Orings, Reducer, PC, PEI, Pineapple Replacement Tank。"},
+ {id:100, name:"YFTK Flash e-Vapor V4.5S+ 23mm RTA FeV 4.5S+ Rebuildable Tank Vape Atomizer 4.5ml", short:"YFTK Flash e-Vapor V4.5S+ 23mm RTA FeV 4.5S+ Rebuildable…", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2024/11/S8269388f114d4dc2bcadc08af56279b7A-430x430.jpg", price:"$26.50 – $27.50", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"],["Color","SS / Black"],["容量","4.5ml"]], desc:"YFTK Flash e-Vapor V4.5S+ 23mm RTA FeV 4.5S+ Rebuildable Tank Vape Atomizer 4.5ml。"},
+ {id:101, name:"Yftk Flat Top Cap For Flash E‑Vapor V4.5 V4.5s+ High Polishing Process Acrylic Material", short:"Yftk Flat Top Cap For Flash E‑Vapor V4.5 V4.5s+ High…", cat:"accessories", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/09/YFTK-flat-top-cap-for-flash-e-vapor-v4.5-v4.5s-2.5-3.5ml-430x430.jpg", price:"$8.20", old:"$9.90", off:"-17%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","YFTK"],["Color","Flat top cap 2.5ml / Flat top cap 3.5ml"]], desc:"YFTK Flat Top Cap Acrylic High Polishing Process Replacement Spare Part Fits For Flash E‑Vapor V4.5 V4.5s+ Atomizer"},
+ {id:102, name:"YFTK Hollow cap for Flash e-vapor V4.5, V4.5S+ RTA", short:"YFTK Hollow cap for Flash e-vapor V4.5, V4.5S+ RTA", cat:"accessories", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/03/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260326164838_2348_272-430x430.jpg", price:"$14.99", old:"$15.99", off:"-6%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","YFTK"]], desc:"YFTK Hollow cap for Flash e-vapor V4.5, V4.5S+ RTA。"},
+ {id:103, name:"YFTK JLNB 510 Drip Tip Premium Replacement Mouthpiece Standard 510 Thread Spare Parts for MTL Atomizer", short:"YFTK JLNB 510 Drip Tip Premium Replacement Mouthpiece…", cat:"accessories", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/09/YFTK-510-Long-Drip-Tip-3-430x430.png", price:"$5.99 – $6.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","YFTK"],["Color","J01 Black / J01 Peek / J01 SS / J02 SS /"]], desc:"YFTK JLNB 510 Drip Tip Standard 510 Thread Mouthpiece Replacement Spare Part For RTA RDA Atomizer"},
+ {id:104, name:"YFTK Kayfun BB MTL RBA Styled Bridge for Boro Mods", short:"YFTK Kayfun BB MTL RBA Styled Bridge for Boro Mods", cat:"boro", sub:"BoRo Tanks & RBA", img:"https://nkcoils.com/wp-content/uploads/2024/11/S068e487636b449dca384fa3b723f82f8G-1-430x430.jpg", price:"$19.99", old:"$27.88", off:"-28%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","Boro 仓与 RBA"],["原站分类","BoRo Tanks & RBA"],["Color","SS"]], desc:"YFTK Kayfun BB MTL RBA Styled Bridge for Boro Mods。"},
+ {id:105, name:"YFTK NT2U RBA Tank Full Kit for Boro / Billet / DotAIO V1 / V2", short:"YFTK NT2U RBA Tank Full Kit for Boro / Billet / DotAIO V1 / V2", cat:"boro", sub:"BoRo Tanks & RBA", img:"https://nkcoils.com/wp-content/uploads/2025/11/%E9%87%91%E8%89%B2-430x430.jpg", price:"$22.99 – $28.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","Boro 仓与 RBA"],["原站分类","BoRo Tanks & RBA"],["Color","Black / Blue / Gold / SS"]], desc:"YFTK Style N2TU RBA Available Color: SS / Black / Blue / Gold Airpins: 1.0 / 1.2 / 1.5 / 2.0 / 2.5 / 3.0 / 3.5 / 4.0mm"},
+ {id:106, name:"YFTK Pinnacle Colossus SBS Mechanical Mod 18350 18650", short:"YFTK Pinnacle Colossus SBS Mechanical Mod 18350 18650", cat:"mods", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/06/YFTK-Pinnacle-Colossus-SBS-Mod-430x430.jpg", price:"$41.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","YFTK"]], desc:"YFTK Pinnacle Colossus SBS Mechanical Mod 18350 18650"},
+ {id:107, name:"YFTK pNeumatyca Style RTA Rebuildable Tank Atomizer 3.5ml, 22mm Diameter, with 4.2ml Extra Tank Tube", short:"YFTK pNeumatyca Style RTA Rebuildable Tank Atomizer 3.5ml,…", cat:"accessories", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2025/10/%E5%A4%A9%E4%BA%951-430x430.jpg", price:"$19.99", old:"$29.99", off:"-33%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","配件"],["原站分类","YFTK"],["容量","3.5ml"]], desc:"YFTK pNeumatyca Style RTA Rebuildable Tank Atomizer 3.5ml, 22mm Diameter, with 4.2ml Extra Tank Tube。"},
+ {id:108, name:"YFTK Skyline-R RTA Vape Atomizer Final Edition, 22mm, 3.2ML", short:"YFTK Skyline-R RTA Vape Atomizer Final Edition, 22mm, 3.2ML", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/02/001-430x430.jpg", price:"$17.99", old:"$29.89", off:"-40%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"],["容量","3.2ML"],["直径","22mm"]], desc:"– Airdisk-Skyline-R MTL 0.8mm – Airdisk-Skyline-R MTL 1mm – Airdisk-Skyline-R MTL 1.2mm – Airdisk-Skyline-R MTL 1.5mm –…"},
+ {id:109, name:"YFTK Stratum Balance2 SBS Vape Mod 1~60W, 1 x 18650, Evolv DNA60 Chipset", short:"YFTK Stratum Balance2 SBS Vape Mod 1~60W, 1 x 18650, Evolv…", cat:"mods", sub:"NDA Mods", img:"https://nkcoils.com/wp-content/uploads/2025/09/YFTK-Balance2-SBS-Mod-430x430.png", price:"$106.99", old:"$149.99", off:"-29%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","NDA Mods"]], desc:"YFTK Stratum Balance V2 DNA60 SBS Box Mod, compact side‑by‑side vape mod powered by 18650 battery, equipped with authentic…"},
+ {id:110, name:"YFTK style 909 NUGG RBA for Orion II with air pins 1.0/2.0/3.0/4.0MM", short:"YFTK style 909 NUGG RBA for Orion II with air pins…", cat:"boro", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2025/11/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-09-10_182839_811-430x430.png", price:"$21.59", old:"$24.99", off:"-14%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","Boro 仓与 RBA"],["原站分类","YFTK"],["直径","4.0MM"]], desc:"YFTK style 909 NUGG RBA for Orion II with air pins 1.0/2.0/3.0/4.0MM。"},
+ {id:111, name:"YFTK Style Kontrl MKRII RBA with 7 PCS Pins 1.2, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0mm (3.5mm Pre-installed)", short:"YFTK Style Kontrl MKRII RBA with 7 PCS Pins 1.2, 1.5, 2.0,…", cat:"boro", sub:"BoRo Tanks & RBA", img:"https://nkcoils.com/wp-content/uploads/2025/11/Gold-430x430.jpg", price:"$21.99", old:"$26.99", off:"-19%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","Boro 仓与 RBA"],["原站分类","BoRo Tanks & RBA"],["Color","Black / Blue / Gold / SS"],["直径","4.0mm"]], desc:"YFTK Style Kontrl MKRII RBA SS/ Black / Blue / Gold Airpins: 7 PCS Pins 1.2, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0mm (3.5mm Pre-installed)"},
+ {id:112, name:"YFTK Taifun GT ONE MTL RTA 316ss 23mm 5 Air Flow Pin Single Coil 4.3ml PSU Tank Atomizer", short:"YFTK Taifun GT ONE MTL RTA 316ss 23mm 5 Air Flow Pin Single…", cat:"prebuilt", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2024/11/Sf6040c9636fe46979079f8f59fb94eb5z-430x430.jpg", price:"$25.99", old:"$26.99", off:"-4%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","预制线圈"],["原站分类","YFTK"],["Color","SS"],["容量","4.3ml"]], desc:"YFTK Taifun GT ONE MTL RTA 316ss 23mm 5 Air Flow Pin Single Coil 4.3ml PSU Tank Atomizer。"},
+ {id:113, name:"YFTK TF Taifun GTR MTL RTA Rebuildable Tank Atomizer 4.0ml 23mm Diameter", short:"YFTK TF Taifun GTR MTL RTA Rebuildable Tank Atomizer 4.0ml…", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2024/11/S4ef308f86361430b844c477f3d09b00c3-430x430.jpg", price:"$25.99", old:"$26.99", off:"-4%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"],["Color","SS"],["容量","4.0ml"]], desc:"YFTK TF Taifun GTR MTL RTA Rebuildable Tank Atomizer 4.0ml 23mm Diameter。"},
+ {id:114, name:"YFTK Ti Dvarw CL RTA 22mm 3.5ML", short:"YFTK Ti Dvarw CL RTA 22mm 3.5ML", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/07/YFTK-Titanium-Dvarw-MTL-RTA-4-430x430.jpg", price:"$29.99", old:"$34.99", off:"-14%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"],["容量","3.5ML"],["直径","22mm"]], desc:"✅ Titanium Dvarw RTA | 22mm Diameter | 3.5ml E-liquid Capacity ✅ Classic Single Coil Deck, simple wicking & building ✅…"},
+ {id:115, name:"YFTK Ti Flash e-vapor V4.5S+ Titanium Polished MTL RTA Vape Atomizer", short:"YFTK Ti Flash e-vapor V4.5S+ Titanium Polished MTL RTA Vape…", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2025/09/Ti%E9%97%AA%E5%85%89%E4%B8%BB%E5%9B%BE-430x430.jpg", price:"$42.99", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"]], desc:"YFTK Ti Flash e-vapor V4.5S+ Titanium Polished MTL RTA Vape Atomizer。"},
+ {id:116, name:"YFTK V1 RTA", short:"YFTK V1 RTA", cat:"atomizers", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2025/11/4ML-430x406.jpg", price:"$36.99", old:"$39.99", off:"-8%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","雾化器"],["原站分类","YFTK"],["Color","YFTK V1 2ML / YFTK V1 4ML"]], desc:"YFTK V1 RTA。"},
+ {id:117, name:"YFTK VIP RBA FOR BB MOD", short:"YFTK VIP RBA FOR BB MOD", cat:"boro", sub:"YFTK", img:"https://nkcoils.com/wp-content/uploads/2026/07/YFTK-VIP-RBA-430x430.jpg", price:"$29.99", old:"$34.99", off:"-14%", isNew:false, best:false, acc:false,
+  specs:[["产品类型","Boro 仓与 RBA"],["原站分类","YFTK"]], desc:"YFTK Boro Tank built with 316 stainless steel base & transparent PCTG tank, 4.5ml e-liquid capacity. Equipped with complete…"},
+ {id:118, name:"YFTK WARFRAME 80W 3D Printed Box Mod, Multi Battery Size 18650 18350 18500, 510 Connector DIY Vape Box Mod for Handmade Coil", short:"YFTK WARFRAME 80W 3D Printed Box Mod, Multi Battery Size…", cat:"mods", sub:"MTL Mods", img:"https://nkcoils.com/wp-content/uploads/2026/11/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2026-11-11_160021_983-430x427.png", price:"$42.86 – $52.63", old:"", off:"", isNew:false, best:false, acc:false,
+  specs:[["产品类型","主机"],["原站分类","MTL Mods"],["Color","YFTK WARFRAME 80W 18350 / YFTK WARFRAME "]], desc:"YFTK WARFRAME 80W 3D printed box mod, accepts 18650 / 18350 / 18500 batteries. Standard 510 thread, ideal for DIY coil…"}
+];
+
+var state = { cat:"all", q:"" };
+var $ = function(s){ return document.querySelector(s); };
+
+function priceHTML(p){
+  var s = p.old ? "<s>"+p.old+"</s>" : "";
+  return s + p.price + '<span class="ref">参考价</span>';
+}
+function cardHTML(p){
+  return '<button class="prod" data-open="'+p.id+'" aria-label="查看 '+p.short+' 详情">'
+    + '<span class="ph">'
+    + (p.off ? '<span class="off">'+p.off+'</span>' : '')
+    + (p.isNew ? '<span class="tag-new">NEW</span>' : '')
+    + '<img src="'+p.img+'" alt="'+p.short+'" loading="lazy" /></span>'
+    + '<h3>'+p.name+'</h3>'
+    + '<p class="cat">'+p.sub+'</p>'
+    + '<p class="price">'+priceHTML(p)+'</p></button>';
+}
+function renderGrid(el, list){ el.innerHTML = list.map(cardHTML).join(""); }
+
+/* Nav */
+var nav = $("#mainNav");
+nav.innerHTML = CATEGORIES.map(function(c){
+  return '<button data-cat="'+c.id+'" class="'+(c.id==="all"?"active":"")+'">'+c.label+'</button>';
+}).join("");
+
+/* Category cards */
+$("#catGrid").innerHTML = CATEGORIES.filter(function(c){return c.id!=="all";}).map(function(c){
+  var n = PRODUCTS.filter(function(p){return p.cat===c.id;}).length;
+  return '<button class="cat-card" data-cat="'+c.id+'"><span class="ph"><img src="'+c.img+'" alt="'+c.cn+'" loading="lazy" /></span>'
+    + '<h3>'+c.label+'</h3><small>'+c.cn+' · '+n+' 款展示</small></button>';
+}).join("");
+
+/* Chips */
+$("#chipRow").innerHTML = CATEGORIES.map(function(c){
+  return '<button class="chip'+(c.id==="all"?" active":"")+'" data-cat="'+c.id+'">'+c.cn+'</button>';
+}).join("");
+
+/* Footer categories */
+$("#footCats").innerHTML = CATEGORIES.filter(function(c){return c.id!=="all";}).map(function(c){
+  return '<li><button data-cat="'+c.id+'">'+c.label+'</button></li>';
+}).join("");
+
+/* Showcase sections (mirror original homepage) */
+renderGrid($("#newGrid"),  PRODUCTS.filter(function(p){return p.isNew;}));
+renderGrid($("#bestGrid"), PRODUCTS.filter(function(p){return p.best;}));
+renderGrid($("#accGrid"),  PRODUCTS.filter(function(p){return p.acc;}).slice(0,10));
+
+function applyFilter(){
+  var list = PRODUCTS.filter(function(p){
+    var okCat = state.cat==="all" || p.cat===state.cat;
+    var q = state.q.trim().toLowerCase();
+    var okQ = !q || (p.name+" "+p.short+" "+p.sub+" "+CATNAME[p.cat]).toLowerCase().indexOf(q) > -1;
+    return okCat && okQ;
+  });
+  renderGrid($("#catalogGrid"), list);
+  $("#emptyLine").style.display = list.length ? "none" : "block";
+  var catLabel = state.cat==="all" ? "全部产品" : CATNAME[state.cat];
+  $("#resultLine").textContent = catLabel + " · 共 " + list.length + " 款展示" + (state.q ? " · 关键词「" + state.q + "」" : "");
+  document.querySelectorAll("[data-cat]").forEach(function(b){
+    var on = b.getAttribute("data-cat")===state.cat;
+    if(b.classList.contains("chip") || b.closest("nav")) b.classList.toggle("active", on);
+  });
+}
+function setCat(id, scroll){
+  state.cat = id;
+  applyFilter();
+  if(scroll) document.querySelector("#catalog").scrollIntoView({behavior:"smooth"});
+}
+document.addEventListener("click", function(e){
+  var catBtn = e.target.closest("[data-cat]");
+  if(catBtn){ setCat(catBtn.getAttribute("data-cat"), true); $("#mainNav").classList.remove("open"); return; }
+  var go = e.target.closest("[data-goto-cat]");
+  if(go){ setCat(go.getAttribute("data-goto-cat"), true); return; }
+  var sc = e.target.closest("[data-scroll]");
+  if(sc){ document.querySelector(sc.getAttribute("data-scroll")).scrollIntoView({behavior:"smooth"}); return; }
+  var card = e.target.closest("[data-open]");
+  if(card){ openModal(parseInt(card.getAttribute("data-open"),10)); }
+});
+
+/* Search */
+$("#searchForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  state.q = $("#searchInput").value;
+  applyFilter();
+  document.querySelector("#catalog").scrollIntoView({behavior:"smooth"});
+});
+$("#searchInput").addEventListener("input", function(e){ state.q = e.target.value; applyFilter(); });
+
+/* Mobile menu */
+$("#menuBtn").addEventListener("click", function(){
+  var navEl = $("#mainNav"); var open = navEl.classList.toggle("open");
+  this.setAttribute("aria-expanded", open ? "true" : "false");
+});
+
+/* Modal */
+var back = $("#modalBack"), lastFocus = null;
+function openModal(id){
+  var p = PRODUCTS.filter(function(x){return x.id===id;})[0]; if(!p) return;
+  lastFocus = document.activeElement;
+  $("#modalImg").src = p.img; $("#modalImg").alt = p.short;
+  $("#modalCat").textContent = CATNAME[p.cat] + " · " + p.sub;
+  $("#modalName").textContent = p.name;
+  $("#modalPrice").innerHTML = priceHTML(p);
+  $("#modalSpec").innerHTML = p.specs.map(function(s){
+    return "<div><dt>"+s[0]+"</dt><dd>"+s[1]+"</dd></div>";
+  }).join("");
+  $("#modalDesc").textContent = p.desc;
+  back.classList.add("open");
+  $("#modalClose").focus();
+}
+function closeModal(){ back.classList.remove("open"); if(lastFocus) lastFocus.focus(); }
+$("#modalClose").addEventListener("click", closeModal);
+back.addEventListener("click", function(e){ if(e.target===back) closeModal(); });
+document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeModal(); });
+
+applyFilter();
+</script>
+</body>
+</html>
